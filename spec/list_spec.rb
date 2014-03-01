@@ -57,8 +57,8 @@ describe "#map" do
   end
 
   it "returns an Enumerator when no block given" do
-    a = [1, 2, 3]
-    a.map.should be_an_instance_of(Enumerator)
+    l = List[1, 2, 3]
+    l.map.should be_an_instance_of(Enumerator)
   end
 
   it "does not copy tainted status" do

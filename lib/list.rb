@@ -36,12 +36,16 @@ class List
   # Actual implementation
 
   def map(&block)
-    new_array = []
-    @array.each do |e|
-      # TODO try to do it without modifiying the array
-      new_array << yield(e)
+    if block_given?
+      new_array = []
+      each do |e|
+        # TODO try to do it without modifiying the array
+        new_array << yield(e)
+      end
+      List[*new_array]
+    else
+      @array.each
     end
-    List[*new_array]
   end
 
   def reduce(*args, &block)
