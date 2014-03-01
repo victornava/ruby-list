@@ -28,13 +28,34 @@ class List
     @array == other._array
   end
 
+  def <<(arg)
+    @array << arg
+    self
+  end
+
   # Actual implementation
+
   def map(&block)
     new_array = []
     @array.each do |e|
       # TODO try to do it without modifiying the array
-      new_array << (yield e)
+      new_array << yield(e)
     end
     List[*new_array]
+  end
+
+  def reduce(*args, &block)
+    if args.size > 0
+      memo = args.first
+      rest = self
+    else
+      memo, *rest = *@array
+    end
+
+    rest.each do |e|
+      memo = yield(memo, e)
+    end
+
+    memo
   end
 end
