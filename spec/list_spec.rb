@@ -124,7 +124,7 @@ describe "#reduce" do
     List[List[1], 2, 'a','b'].reduce {|r,i| r<<i}.should == List[1, 2, 'a', 'b']
   end
 
-  # it "returns nil when fails(legacy rubycon)" do
-  #   EnumerableSpecs::EachDefiner.new().send(@method) {|acc,x| 999 }.should == nil
-  # end
+  it "returns nil when fails" do
+    List[].reduce {|acc,x| 999 }.should == nil
+  end
 end
