@@ -10,3 +10,39 @@ RSpec.configure do |config|
   # Use the specified formatter
   config.formatter = :progress
 end
+
+class ListSpecs
+  # SampleRange = 0..1000
+  # SampleCount = 1000
+
+  # def self.frozen_list
+  #   frozen_list = [1,2,3]
+  #   frozen_list.freeze
+  #   frozen_list
+  # end
+  #
+  # def self.empty_frozen_list
+  #   frozen_list = []
+  #   frozen_list.freeze
+  #   frozen_list
+  # end
+
+  def self.recursive_list
+    a = List[1, 'two', 3.0]
+    1.times { a << a }
+    a
+  end
+
+  def self.head_recursive_list
+    a =  List[]
+    5.times { a << a }
+    a << 1 << 'two' << 3.0
+    a
+  end
+
+  def self.empty_recursive_list
+    a = List[]
+    a << a
+    a
+  end
+end

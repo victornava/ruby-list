@@ -62,4 +62,33 @@ class List
 
     memo
   end
+
+  def count(arg=nil, &block)
+    case
+    when arg
+      count_where { |obj| obj == arg }
+    when block_given?
+      count_where &block
+    else
+      count_where { true }
+    end
+  end
+
+  def select(&block)
+    return @array.each unless block_given?
+
+    reduce(List[]) do |memo, obj|
+      if (yield obj)
+        memo << obj
+      else
+        memo
+      end
+    end
+  end
+
+  private
+
+  def count_where(&block)
+    select(&block).reduce(0) { |memo| memo + 1 }
+  end
 end

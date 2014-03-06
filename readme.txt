@@ -19,7 +19,6 @@ Methods to implement
 #all?
 #any?
 #chunk
-#collect
 #count
 #cycle
 #detect
@@ -88,7 +87,7 @@ Methods to implement
 #delete
 #delete_at
 #delete_if
-#each
+
 #each_index
 #empty?
 #eql?
@@ -133,3 +132,5 @@ Methods to implement
 # Methods not implemented
 #collect_concat (same as flat_map)
 #inject (same as reduce)
+#collect (same as map)
+#each (delegate to array)

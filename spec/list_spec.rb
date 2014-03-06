@@ -99,9 +99,9 @@ describe "#reduce" do
     a.should == [[2, 5], [5, 3], [3, 6], [6, 1], [1, 4]]
   end
 
-   it "gathers whole lists as elements when each yields multiple" do
-     List[List[1,2], List[3,4,5]].reduce(List[]) {|acc, e| acc << e }.should == List[List[1,2], List[3,4,5]]
-   end
+  it "gathers whole lists as elements when each yields multiple" do
+    List[List[1,2], List[3,4,5]].reduce(List[]) {|acc, e| acc << e }.should == List[List[1,2], List[3,4,5]]
+  end
 
   it "with inject arguments" do
     List[].reduce(1) {|acc,x| 999 }.should == 1
@@ -126,5 +126,44 @@ describe "#reduce" do
 
   it "returns nil when fails" do
     List[].reduce {|acc,x| 999 }.should == nil
+  end
+end
+
+describe "#count" do
+  it "returns the number of elements" do
+    List[:a, :b, :c].count.should == 3
+  end
+
+  it "returns the number of elements that equal the argument" do
+    List[:a, :b, :b, :c].count(:b).should == 2
+  end
+
+  it "returns the number of element for which the block evaluates to true" do
+    List[:a, :b, :c].count { |s| s != :b }.should == 2
+  end
+end
+
+describe "#select" do
+  it "returns an Enumerator if no block given" do
+    [1,2].select.should be_an_instance_of(Enumerator)
+  end
+
+  it "returns a new array of elements for which block is true" do
+    List[1, 3, 4, 5, 6, 9].select { |i| i % ((i + 1) / 2) == 0}.should == List[1, 4, 6]
+  end
+
+  it "does not return subclass instance on Array subclasses" do
+    class AnotherList < List ; end
+    AnotherList[1, 2, 3].select { true }.should be_an_instance_of(List)
+  end
+
+  it "properly handles recursive lists" do
+    empty = ListSpecs.empty_recursive_list
+    empty.select { true }.should == empty
+    empty.select { false }.should == List[]
+
+    list = ListSpecs.recursive_list
+    list.select { true }.should == list
+    list.select { false }.should == List[]
   end
 end
