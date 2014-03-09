@@ -86,6 +86,13 @@ class List
     end
   end
 
+  def reject(&block)
+    return @array.each unless block_given?
+    reduce(List[]) do |memo, obj|
+      yield(obj) ? memo : (memo << obj)
+    end
+  end
+
   private
 
   def count_where(&block)
