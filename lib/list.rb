@@ -78,16 +78,13 @@ class List
     return @array.each unless block_given?
 
     reduce(List[]) do |memo, obj|
-      if (yield obj)
-        memo << obj
-      else
-        memo
-      end
+      yield(obj) ? (memo << obj) : memo
     end
   end
 
   def reject(&block)
     return @array.each unless block_given?
+
     reduce(List[]) do |memo, obj|
       yield(obj) ? memo : (memo << obj)
     end
