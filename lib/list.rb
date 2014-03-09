@@ -95,6 +95,10 @@ class List
     map(&block).reduce(true, &:&)
   end
 
+  def any?(&block)
+    map(&block).reduce(false, &:|)
+  end
+
   private
 
   def count_where(&block)

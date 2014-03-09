@@ -13,6 +13,12 @@ end
 
 class ListSubclass < List ; end
 
+class ListThrowingErrorOnEach < List
+  def each
+    raise "need more babarabatiri!"
+  end
+end
+
 class ListSpecs
   # SampleRange = 0..1000
   # SampleCount = 1000

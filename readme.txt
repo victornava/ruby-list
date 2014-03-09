@@ -11,17 +11,20 @@ The goal is to copy all the functionality of Array by just using the #each metho
 - For fun
 
 # Implemented
+
 map
 reduce
 count
 select
 reject
 all?
+any?
+
 
 # To implement 
 
 (From Enumerable)
-any?
+
 chunk
 cycle
 detect
