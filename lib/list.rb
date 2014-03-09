@@ -44,7 +44,7 @@ class List
       end
       List[*new_array]
     else
-      @array.each
+      each
     end
   end
 
@@ -75,7 +75,8 @@ class List
   end
 
   def select(&block)
-    return @array.each unless block_given?
+    return each unless block_given?
+
 
     reduce(List[]) do |memo, obj|
       yield(obj) ? (memo << obj) : memo
@@ -83,11 +84,15 @@ class List
   end
 
   def reject(&block)
-    return @array.each unless block_given?
+    return each unless block_given?
 
     reduce(List[]) do |memo, obj|
       yield(obj) ? memo : (memo << obj)
     end
+  end
+
+  def all?(&block)
+    map(&block).reduce(true, &:&)
   end
 
   private

@@ -16,11 +16,11 @@ reduce
 count
 select
 reject
+all?
 
 # To implement 
 
 (From Enumerable)
-all?
 any?
 chunk
 cycle

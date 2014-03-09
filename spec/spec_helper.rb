@@ -47,4 +47,8 @@ class ListSpecs
     a << a
     a
   end
+
+  def self.numerous
+    List[2, 5, 3, 6, 1, 4]
+  end
 end
