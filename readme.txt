@@ -15,7 +15,7 @@ map
 reduce
 count
 select
-
+reject
 
 # To implement 
 
@@ -52,7 +52,6 @@ minmax_by
 none?
 one?
 partition
-reject
 reverse_each
 slice_before
 sort
