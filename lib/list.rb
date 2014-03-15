@@ -113,6 +113,10 @@ class List
     end
   end
 
+  def size
+    count
+  end
+
   private
 
   def count_where(&block)

@@ -20,8 +20,9 @@ reject
 all?
 any?
 take
+size
 
-# To implement 
+# To implement
 
 (From Enumerable)
 
@@ -96,7 +97,6 @@ insert
 inspect
 join
 last
-length
 pack
 permutation
 product
@@ -109,18 +109,13 @@ rindex
 rotate
 sample
 shuffle
-size
 slice
 to_ary
 to_s
 transpose
 uniq
-
 values_at
 |
-
-Only non destructive methods are implemented
-Methods to implement
 
 # Delegated to array
 ::[]
@@ -141,3 +136,4 @@ keep_if (mutable)
 delete_if (mutable)
 delete (mutable)
 delete_at (mutable)
+length (same as size)

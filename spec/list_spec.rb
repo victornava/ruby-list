@@ -397,3 +397,15 @@ describe "#take" do
     lambda { @enum.send(@method, obj) }.should raise_error(TypeError)
   end
 end
+
+describe "#size" do
+  it "returns the number of elements" do
+    List[].size.should == 0
+    List[1, 2, 3].size.should == 3
+  end
+
+  it "properly handles recursive arrays" do
+    ListSpecs.empty_recursive_list.size.should == 1
+    ListSpecs.recursive_list.size.should == 8
+  end
+end
