@@ -21,6 +21,7 @@ all?
 any?
 take
 size
+drop
 
 # To implement
 
@@ -29,7 +30,6 @@ size
 chunk
 cycle
 detect
-drop
 drop_while
 each_cons
 each_entry

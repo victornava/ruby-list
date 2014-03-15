@@ -117,6 +117,21 @@ class List
     count
   end
 
+  def drop(n)
+    raise TypeError unless n.is_a?(Numeric)
+
+    case
+    when n < 0
+      raise ArgumentError
+    when n == 0
+      self
+    when n > 0 && n <= size
+      List[*(n..(size - 1))].map { |i| self[i] }
+    else
+      List[]
+    end
+  end
+
   private
 
   def count_where(&block)
