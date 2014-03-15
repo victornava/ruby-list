@@ -106,7 +106,7 @@ class List
       raise ArgumentError
     when number == 0
       List[]
-    when number > 0 && number <= count
+    when number > 0 && number <= size
       List[*number.times].map { |i| self[i] }
     else
       self
