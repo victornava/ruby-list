@@ -22,6 +22,7 @@ any?
 take
 size
 drop
+first
 
 # To implement
 
@@ -40,7 +41,6 @@ entries
 find
 find_all
 find_index
-first
 flat_map
 grep
 group_by

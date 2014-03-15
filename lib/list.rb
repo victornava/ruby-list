@@ -101,15 +101,17 @@ class List
   def take(number)
     raise TypeError unless number.is_a?(Numeric)
 
+    n = number.to_int
+
     case
-    when number < 0
+    when n < 0
       raise ArgumentError
-    when number == 0
+    when n == 0
       List[]
-    when number > 0 && number <= size
-      List[*number.times].map { |i| self[i] }
+    when n > 0 && n <= size
+      List[*n.times].map { |i| self[i] }
     else
-      self
+      List[*self.each]
     end
   end
 
@@ -130,6 +132,11 @@ class List
     else
       List[]
     end
+  end
+
+  # TODO Find a better way to test if an argument was given
+  def first(n=:no_argument)
+    n == :no_argument ? self[0] : take(n)
   end
 
   private
