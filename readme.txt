@@ -19,7 +19,7 @@ select
 reject
 all?
 any?
-
+take
 
 # To implement 
 
@@ -59,7 +59,6 @@ reverse_each
 slice_before
 sort
 sort_by
-take
 take_while
 to_a
 to_h
@@ -83,9 +82,6 @@ clear
 combination
 compact
 concat
-delete
-delete_at
-delete_if
 each_index
 empty?
 eql?
@@ -99,14 +95,11 @@ initialize_copy
 insert
 inspect
 join
-keep_if
 last
 length
 pack
 permutation
-pop
 product
-push
 rassoc
 repeated_combination
 repeated_permutation
@@ -115,7 +108,6 @@ reverse
 rindex
 rotate
 sample
-shift
 shuffle
 size
 slice
@@ -123,7 +115,7 @@ to_ary
 to_s
 transpose
 uniq
-unshift
+
 values_at
 |
 
@@ -141,3 +133,11 @@ collect_concat (same as flat_map)
 inject (same as reduce)
 collect (same as map)
 each (delegate to array)
+pop (mutable)
+push (mutable)
+shift (mutable)
+unshift (mutable)
+keep_if (mutable)
+delete_if (mutable)
+delete (mutable)
+delete_at (mutable)

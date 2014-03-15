@@ -77,7 +77,6 @@ class List
   def select(&block)
     return each unless block_given?
 
-
     reduce(List[]) do |memo, obj|
       yield(obj) ? (memo << obj) : memo
     end
@@ -97,6 +96,21 @@ class List
 
   def any?(&block)
     map(&block).reduce(false, &:|)
+  end
+
+  def take(number)
+    raise TypeError unless number.is_a?(Numeric)
+
+    case
+    when number < 0
+      raise ArgumentError
+    when number == 0
+      List[]
+    when number > 0 && number <= count
+      List[*number.times].map { |i| self[i] }
+    else
+      self
+    end
   end
 
   private
