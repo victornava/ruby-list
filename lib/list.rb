@@ -149,7 +149,7 @@ class List
   def min_by(&block)
     if block_given?
       reduce do |memo, obj|
-        yield(memo) < yield(obj) ? memo : obj
+        yield(memo) <= yield(obj) ? memo : obj
       end
     else
       each

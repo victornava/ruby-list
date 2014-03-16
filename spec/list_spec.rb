@@ -606,7 +606,7 @@ describe "#min_by" do
 
   it "returns the object that appears first in #each in case of a tie" do
     a, b, c = '2', '1', '1'
-    List[a, b, c].min_by {|obj| obj.to_i }.should == b
+    List[a, b, c].min_by {|obj| obj.to_i }.should equal(b)
   end
 
   it "uses min.<=>(current) to determine order" do
