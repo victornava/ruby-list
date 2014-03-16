@@ -141,7 +141,7 @@ class List
 
   def min(&block)
     reduce do |memo, obj|
-      memo_is_smaller = block_given? ? (yield(obj, memo) >= 0) : (memo < obj)
+      memo_is_smaller = block_given? ? (0 <= yield(obj, memo)) : (memo < obj)
       memo_is_smaller ? memo : obj
     end
   end

@@ -546,14 +546,20 @@ describe "#min" do
     List[].min.should be_nil
   end
 
+  it "raises a NoMethodError for elements without #<=>" do
+    lambda do
+     List[Object.new, Object.new].max
+    end.should raise_error(NoMethodError)
+  end
+
   it "raises an ArgumentError for incomparable elements" do
     lambda do
       List[11,"22"].min
     end.should raise_error(ArgumentError)
 
-    # lambda do
-    #   List[11,12,22,33].min{|a, b| nil}
-    # end.should raise_error(ArgumentError)
+    lambda do
+      List[11,12,22,33].min{|a, b| nil}
+    end.should raise_error(ArgumentError)
   end
 
   it "returns the minimum when using a block rule" do
