@@ -27,6 +27,7 @@ min
 min_by
 max
 max_by
+minmax
 
 
 # To implement

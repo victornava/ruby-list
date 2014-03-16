@@ -173,6 +173,10 @@ class List
     end
   end
 
+  def minmax(&block)
+    List[min(&block), max(&block)]
+  end
+
   private
 
   def count_where(&block)
