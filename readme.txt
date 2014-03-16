@@ -28,6 +28,7 @@ min_by
 max
 max_by
 minmax
+minmax_by
 
 
 # To implement
@@ -54,7 +55,6 @@ include?
 lazy
 member?
 minmax
-minmax_by
 none?
 one?
 partition

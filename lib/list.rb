@@ -177,6 +177,14 @@ class List
     List[min(&block), max(&block)]
   end
 
+  def minmax_by(&block)
+    if block_given?
+      List[min_by(&block), max_by(&block)]
+    else
+      each
+    end
+  end
+
   private
 
   def count_where(&block)
