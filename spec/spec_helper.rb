@@ -19,6 +19,20 @@ class ListThrowingErrorOnEach < List
   end
 end
 
+class ReverseComparable
+  include Comparable
+  def initialize(num)
+    @num = num
+  end
+
+  attr_accessor :num
+
+  # Reverse comparison
+  def <=>(other)
+    other.num <=> @num
+  end
+end
+
 class ListSpecs
   # SampleRange = 0..1000
   # SampleCount = 1000
