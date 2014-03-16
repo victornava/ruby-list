@@ -156,6 +156,13 @@ class List
     end
   end
 
+  def max(&block)
+    reduce do |memo, obj|
+      memo_is_bigger = block_given? ? (0 <= yield(memo, obj)) : (memo > obj)
+      memo_is_bigger ? memo : obj
+    end
+  end
+
   private
 
   def count_where(&block)

@@ -25,6 +25,7 @@ drop
 first
 min
 min_by
+max
 
 
 # To implement
@@ -49,7 +50,6 @@ grep
 group_by
 include?
 lazy
-max
 max_by
 member?
 minmax
