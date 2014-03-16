@@ -23,6 +23,8 @@ take
 size
 drop
 first
+min
+
 
 # To implement
 
@@ -49,7 +51,6 @@ lazy
 max
 max_by
 member?
-min
 min_by
 minmax
 minmax_by
