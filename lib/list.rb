@@ -204,6 +204,14 @@ class List
     left
   end
 
+  def sort_by(&block)
+    if block_given?
+      sort { |l, r| yield(l) <=> yield(r) }
+    else
+      each
+    end
+  end
+
   private
 
   def count_where(&block)

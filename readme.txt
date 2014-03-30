@@ -30,6 +30,7 @@ max_by
 minmax
 minmax_by
 sort
+sort_by
 
 # To implement
 
@@ -59,7 +60,6 @@ one?
 partition
 reverse_each
 slice_before
-sort_by
 take_while
 to_a
 to_h
