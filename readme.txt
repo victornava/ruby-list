@@ -31,6 +31,7 @@ minmax
 minmax_by
 sort
 sort_by
+zip
 
 # To implement
 
@@ -63,7 +64,6 @@ slice_before
 take_while
 to_a
 to_h
-zip
 
 (From Array)
 

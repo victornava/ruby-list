@@ -212,6 +212,15 @@ class List
     end
   end
 
+  def zip(*args, &block)
+    # TODO use each_with_index
+    result = (0..(size-1)).reduce(List[]) do |memo, i|
+      temp = List[ self[i], *args.map { |arg| arg[i] } ]
+      memo << ( block_given? ? yield(temp) : temp )
+    end
+    block_given? ? nil : result
+  end
+
   private
 
   def count_where(&block)
