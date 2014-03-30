@@ -42,12 +42,12 @@ class List
 
   def map(&block)
     if block_given?
-      new_array = []
+      result = List[]
       each do |e|
-        # TODO try to do it without modifiying the array
-        new_array << yield(e)
+        # TODO try to do it without modifiying the list
+        result << yield(e)
       end
-      List[*new_array]
+      result
     else
       each
     end
@@ -58,6 +58,7 @@ class List
       memo = args.first
       rest = self
     else
+      # TODO Use list rather than array
       memo, *rest = *@array
     end
 

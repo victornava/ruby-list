@@ -3,7 +3,10 @@
 This is an implementation or Ruby's Array class
 
 Will use an array as internal representation
-The goal is to copy all the functionality of Array by just using the #each method
+The goal is to implement most of the functionality from Array by just using its #each method,
+like Enumerable does.
+
+I'm interested only on the immutable methods so all mutable methods with "!" are not implemented.
 
 # Why?
 
