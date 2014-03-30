@@ -29,7 +29,7 @@ max
 max_by
 minmax
 minmax_by
-
+sort
 
 # To implement
 
@@ -54,13 +54,11 @@ group_by
 include?
 lazy
 member?
-minmax
 none?
 one?
 partition
 reverse_each
 slice_before
-sort
 sort_by
 take_while
 to_a

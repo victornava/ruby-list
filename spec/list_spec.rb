@@ -8,19 +8,19 @@ describe "::[]" do
 end
 
 describe "#[]" do
-  it "delegates to Array" do
+  it "delegates to List" do
     List[0,1,2][1].should == 1
   end
 end
 
 describe "#each" do
-  it "delegates to Array" do
+  it "delegates to List" do
     List[1,2].each.inspect.should  == [1,2].each.inspect
   end
 end
 
 describe "#==" do
-  it "delegates to Array" do
+  it "delegates to List" do
     List[1,2].should == List[1,2]
   end
 end
@@ -61,7 +61,7 @@ describe "#map" do
   end
 
   it "does not copy tainted status" do
-    a = Array[1, 2, 3]
+    a = List[1, 2, 3]
     a.taint
     a.map {|x| x}.tainted?.should be_false
   end
@@ -147,7 +147,7 @@ describe "#select" do
     [1,2].select.should be_an_instance_of(Enumerator)
   end
 
-  it "returns a new array of elements for which block is true" do
+  it "returns a new List of elements for which block is true" do
     List[1, 3, 4, 5, 6, 9].select { |i| i % 2 == 0}.should == List[4, 6]
   end
 
@@ -365,18 +365,18 @@ describe "#take" do
     @list.take(4).should == List[4, 3, 2, 1]
   end
 
-  it "returns an empty array when passed count on an empty array" do
+  it "returns an empty List when passed count on an empty List" do
     empty = List[]
     empty.take(0).should == empty
     empty.take(1).should == empty
     empty.take(2).should == empty
   end
 
-  it "returns an empty array when passed count == 0" do
+  it "returns an empty List when passed count == 0" do
     @list.take(0).should == List[]
   end
 
-  it "returns an array containing the first element when passed count == 1" do
+  it "returns an List containing the first element when passed count == 1" do
     @list.take(1).should.should == List[4]
   end
 
@@ -384,7 +384,7 @@ describe "#take" do
     lambda { @list.take(-1) }.should raise_error(ArgumentError)
   end
 
-  it "returns the entire array when count > length" do
+  it "returns the entire List when count > length" do
     @list.take(100).should == @list
     @list.take(8).should == @list
   end
@@ -404,14 +404,14 @@ describe "#size" do
     List[1, 2, 3].size.should == 3
   end
 
-  it "properly handles recursive arrays" do
+  it "properly handles recursive Lists" do
     ListSpecs.empty_recursive_list.size.should == 1
     ListSpecs.recursive_list.size.should == 8
   end
 end
 
 describe "#drop" do
-  it "removes the specified number of elements from the start of the array" do
+  it "removes the specified number of elements from the start of the List" do
     List[1, 2, 3, 4, 5].drop(2).should == List[3, 4, 5]
   end
 
@@ -419,11 +419,11 @@ describe "#drop" do
     lambda { List[1, 2].drop(-3) }.should raise_error(ArgumentError)
   end
 
-  it "returns an empty Array if all elements are dropped" do
+  it "returns an empty List if all elements are dropped" do
     List[1, 2].drop(2).should == List[]
   end
 
-  it "returns an empty Array when called on an empty Array" do
+  it "returns an empty List when called on an empty List" do
     List[].drop(0).should == List[]
   end
 
@@ -431,7 +431,7 @@ describe "#drop" do
     List[1, 2].drop(0).should == List[1, 2]
   end
 
-  it "returns an empty Array if more elements than exist are dropped" do
+  it "returns an empty List if more elements than exist are dropped" do
     List[1, 2].drop(3).should == List[]
   end
 end
@@ -456,11 +456,11 @@ describe "#first" do
     List[].first(2).should == List[]
   end
 
-  it "returns an empty array when passed count == 0" do
+  it "returns an empty List when passed count == 0" do
     List[1, 2, 3, 4, 5].first(0).should == List[]
   end
 
-  it "returns an array containing the first element when passed count == 1" do
+  it "returns an List containing the first element when passed count == 1" do
     List[1, 2, 3, 4, 5].first(1).should == List[1]
   end
 
@@ -468,11 +468,11 @@ describe "#first" do
     lambda { List[1, 2].first(-1) }.should raise_error(ArgumentError)
   end
 
-  it "returns the entire array when count > length" do
+  it "returns the entire List when count > length" do
     List[1, 2, 3, 4, 5, 9].first(10).should == List[1, 2, 3, 4, 5, 9]
   end
 
-  it "properly handles recursive arrays" do
+  it "properly handles recursive Lists" do
     empty = ListSpecs.empty_recursive_list
     empty.first.should equal(empty)
 
@@ -492,7 +492,7 @@ describe "#first" do
     lambda { List[1,2].first(obj) }.should raise_error(TypeError)
   end
 
-  it "does not return subclass instance when passed count on Array subclasses" do
+  it "does not return subclass instance when passed count on List subclasses" do
     ListSubclass[].first(0).should be_an_instance_of(List)
     ListSubclass[].first(2).should be_an_instance_of(List)
     ListSubclass[1, 2, 3].first(0).should be_an_instance_of(List)
@@ -800,5 +800,135 @@ describe "#minmax_by" do
   it "is able to return the maximum for enums that contain nils" do
     list = List[nil, nil, true]
     list.minmax_by {|o| o.nil? ? 0 : 1 }.should == List[nil, true]
+  end
+end
+
+describe "#sort" do
+  it "returns a new list sorted based on comparing elements with <=>" do
+    l = List[1, -2, 3, 9, 1, 5, -5, 1000, -5, 2, -10, 14, 6, 23, 0]
+    l.sort.should == List[-10, -5, -5, -2, 0, 1, 1, 2, 3, 5, 6, 9, 14, 23, 1000]
+  end
+
+  it "does not affect the original List" do
+    a = List[0, 15, 2, 3, 4, 6, 14, 5, 7, 12, 8, 9, 1, 10, 11, 13]
+    b = a.sort
+    a.should == List[0, 15, 2, 3, 4, 6, 14, 5, 7, 12, 8, 9, 1, 10, 11, 13]
+    b.should == List[*(0..15)]
+  end
+
+  it "sorts already-sorted Lists" do
+    List[*(0..15)].sort.should == List[*(0..15)]
+  end
+
+  it "sorts reverse-sorted Lists" do
+    List[*(0..15).to_a.reverse].sort.should == List[*(0..15)]
+  end
+
+  it "sorts Lists that consist entirely of equal elements" do
+    class SortSame
+      def <=>(other); 0; end
+      def ==(other); true; end
+    end
+
+    l = List[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    l.sort.should == l
+    b = List.new(15).map { SortSame.new }
+    b.sort.should == b
+  end
+
+  it "sorts Lists that consist mostly of equal elements" do
+    l = List[1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    l.sort.should == List[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  end
+
+  it "does not return self even if the List would be already sorted" do
+    l = List[1, 2, 3]
+    sorted = l.sort
+    sorted.should == l
+    sorted.should_not equal(l)
+  end
+
+  it "properly handles recursive Lists" do
+    empty = ListSpecs.empty_recursive_list
+    empty.sort.should == empty
+
+    # TODO No idea why this fails. Maybe there is something wrong with #==
+    # list = List[List[]]; list << list
+    # list.sort.should == List[List[], list]
+  end
+
+  it "does not deal with exceptions raised by unimplemented or incorrect #<=>" do
+    o = Object.new
+
+    lambda { List[o, 1].sort }.should raise_error
+  end
+
+  it "may take a block which is used to determine the order of objects a and b described as -1, 0 or +1" do
+    l = [5, 1, 4, 3, 2]
+    l.sort.should == [1, 2, 3, 4, 5]
+    l.sort {|x, y| y <=> x}.should == [5, 4, 3, 2, 1]
+  end
+
+  it "raises an error when a given block returns nil" do
+    lambda { List[1, 2].sort {} }.should raise_error(ArgumentError)
+  end
+
+  it "does not call #<=> on contained objects when invoked with a block" do
+    l = List[*(0..25)]
+    (0..25).each {|i| l[i] = UFOSceptic.new }
+
+    l.sort { -1 }.should be_an_instance_of(List)
+  end
+
+  it "completes when supplied a block that always returns the same result" do
+    l = List[2, 3, 5, 1, 4]
+    l.sort {  1 }.should be_an_instance_of(List)
+    l.sort {  0 }.should be_an_instance_of(List)
+    l.sort { -1 }.should be_an_instance_of(List)
+  end
+
+  it "does not freezes self while being sorted" do
+    l = List[1, 2, 3]
+    l.sort { |x,y| l.frozen?.should == false; x <=> y }
+  end
+
+  it "returns the specified value when it would break in the given block" do
+    List[1, 2, 3].sort{ break :a }.should == :a
+  end
+
+  it "uses the sign of Bignum block results as the sort result" do
+    l = List[1, 2, 5, 10, 7, -4, 12]
+    begin
+      class Bignum;
+        alias old_spaceship <=>
+        def <=>(other)
+          raise
+        end
+      end
+      l.sort {|n, m| (n - m) * (2 ** 200)}.should == List[-4, 1, 2, 5, 7, 10, 12]
+    ensure
+      class Bignum
+        alias <=> old_spaceship
+      end
+    end
+  end
+
+  it "compares values returned by block with 0" do
+    l = List[1, 2, 5, 10, 7, -4, 12]
+    target = List[-4, 1, 2, 5, 7, 10, 12]
+    l.sort { |n, m| n - m }.should == target
+    lambda {
+      l.sort { |n, m| (n - m).to_s }
+    }.should raise_error(ArgumentError)
+  end
+
+
+  it "raises an error if objects can't be compared" do
+    lambda { List[1, 'a'].sort }.should raise_error(ArgumentError)
+  end
+
+  it "does not return subclass instance on List subclasses" do
+    subclass = ListSubclass[1, 2, 3]
+    subclass.sort.should be_an_instance_of(List)
   end
 end

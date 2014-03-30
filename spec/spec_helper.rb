@@ -33,6 +33,10 @@ class ReverseComparable
   end
 end
 
+class UFOSceptic
+  def <=>(other); raise "N-uh, UFO:s do not exist!"; end
+end
+
 class ListSpecs
   # SampleRange = 0..1000
   # SampleCount = 1000

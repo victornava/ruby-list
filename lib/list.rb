@@ -19,6 +19,11 @@ class List
     @array[*args]
   end
 
+  # TODO implement this
+  def []=(index, value)
+    @array[index] = value
+  end
+
   def each(*args, &block)
     @array.each(*args, &block)
   end
@@ -183,6 +188,20 @@ class List
     else
       each
     end
+  end
+
+  # TODO This is extremelly slow :P use a faster algorithm
+  def sort(&block)
+    left = List[]
+    right = self.dup
+
+    while right.any?
+      min = right.min(&block)
+      right.select { |o| o == min }.each { |o| left << o }
+      right = right.reject { |o| o == min }
+    end
+
+    left
   end
 
   private
