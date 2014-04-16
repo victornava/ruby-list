@@ -224,9 +224,7 @@ class List
   end
 
   def each_with_index(&block)
-    (0..(size-1)).each do |i|
-      yield self[i], i
-    end
+    each.with_index(&block)
     self
   end
 
