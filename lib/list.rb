@@ -222,6 +222,13 @@ class List
     block_given? ? nil : result
   end
 
+  def each_with_index(&block)
+    (0..(size-1)).each do |i|
+      yield self[i], i
+    end
+    self
+  end
+
   private
 
   def count_where(&block)
