@@ -394,7 +394,7 @@ describe "#take" do
     lambda { @list.take("a") }.should raise_error(TypeError)
 
     obj = double("nonnumeric")
-    lambda { @enum.send(@method, obj) }.should raise_error(TypeError)
+    lambda { @list.send(@method, obj) }.should raise_error(TypeError)
   end
 end
 
@@ -958,7 +958,7 @@ describe "#sort_by" do
   end
 end
 
-describe "zip" do
+describe "#zip" do
   it "combines each element of the receiver with the element of the same index in lists given as arguments" do
     List[1,2,3].zip(List[4,5,6], List[7,8,9]).should == List[List[1,4,7], List[2,5,8], List[3,6,9]]
     List[1,2,3].zip.should == List[List[1], List[2], List[3]]
@@ -1060,5 +1060,34 @@ describe "#each_with_index" do
     res = @b.each_with_index { |*b| c,d = b; acc << c; acc << d }
     List[2, 0, 5, 1, 3, 2, 6, 3].should == acc
     res.should eql(@b)
+  end
+end
+
+describe "#each_with_object" do
+  before :each do
+    @values = List[2, 5, 3, 6, 1, 4]
+    @list = @values.dup
+    @initial = "memo"
+  end
+
+  it "passes each element and its argument to the block" do
+    acc = List[]
+    @list.each_with_object(@initial) do |elem, obj|
+      obj.should equal(@initial)
+      obj = 42
+      acc << elem
+    end.should equal(@initial)
+    acc.should == @values
+  end
+
+  it "returns an enumerator if no block" do
+    acc = List[]
+    e = @list.each_with_object(@initial)
+    e.each do |elem, obj|
+      obj.should equal(@initial)
+      obj = 42
+      acc << elem
+    end.should equal(@initial)
+    acc.should == @values
   end
 end

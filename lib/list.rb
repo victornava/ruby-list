@@ -24,6 +24,7 @@ class List
     @array[index] = value
   end
 
+  # TODO implement this using enumerator
   def each(*args, &block)
     @array.each(*args, &block)
   end
@@ -227,6 +228,10 @@ class List
       yield self[i], i
     end
     self
+  end
+
+  def each_with_object(obj, &block)
+    each.with_object(obj, &block)
   end
 
   private

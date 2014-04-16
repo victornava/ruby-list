@@ -36,6 +36,7 @@ sort
 sort_by
 zip
 each_with_index
+each_with_object
 
 # To implement
 
@@ -48,7 +49,6 @@ drop_while
 each_cons
 each_entry
 each_slice
-each_with_object
 entries
 find
 find_all
