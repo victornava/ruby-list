@@ -13,6 +13,13 @@ I'm interested only on the immutable methods so all mutable methods with "!" are
 - To learn
 - For fun
 
+# Goals
+
+- Implement all the methods
+- Don't delegate anything other than each
+- Work only with immutable methods internally
+- Use enumerator rather than array
+
 # Implemented
 
 map
