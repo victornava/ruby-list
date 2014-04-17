@@ -232,6 +232,20 @@ class List
     each.with_object(obj, &block)
   end
 
+  # TODO do this without mutating the list
+  def flat_map(&block)
+    return each unless block_given?
+
+    reduce(List[]) do |memo, elem|
+      if elem.is_a?(List)
+        elem.each { |sub_elem| memo << sub_elem }
+      else
+        memo << elem
+      end
+      memo
+    end
+  end
+
   private
 
   def count_where(&block)

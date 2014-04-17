@@ -37,6 +37,7 @@ sort_by
 zip
 each_with_index
 each_with_object
+flat_map
 
 # To implement
 
@@ -53,7 +54,6 @@ entries
 find
 find_all
 find_index
-flat_map
 grep
 group_by
 include?
