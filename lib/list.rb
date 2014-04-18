@@ -246,6 +246,13 @@ class List
     end
   end
 
+  def to_a
+    array = _array.dup
+    array.taint if tainted?
+    array.untrust if untrusted?
+    array
+  end
+
   private
 
   def count_where(&block)

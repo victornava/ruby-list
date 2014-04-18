@@ -45,6 +45,7 @@ zip
 each_with_index
 each_with_object
 flat_map
+to_a
 
 # To implement
 
@@ -72,7 +73,6 @@ partition
 reverse_each
 slice_before
 take_while
-to_a
 to_h
 
 (From Array)
