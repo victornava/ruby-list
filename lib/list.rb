@@ -251,7 +251,7 @@ class List
     array.untrust if untrusted?
     array
   end
-  
+
   def partition(&block)
     List[select(&block), reject(&block)]
   end

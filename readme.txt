@@ -46,6 +46,7 @@ each_with_index
 each_with_object
 flat_map
 to_a
+partition
 
 # To implement
 
@@ -58,7 +59,6 @@ drop_while
 each_cons
 each_entry
 each_slice
-entries
 find
 find_all
 find_index
@@ -69,7 +69,6 @@ lazy
 member?
 none?
 one?
-partition
 reverse_each
 slice_before
 take_while
@@ -147,3 +146,4 @@ delete_if (mutable)
 delete (mutable)
 delete_at (mutable)
 length (same as size)
+entries (same as to_a)
