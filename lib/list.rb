@@ -5,6 +5,7 @@ class List
     end
   end
 
+  # TODO get rid of this
   def _array
     @array
   end
@@ -232,17 +233,15 @@ class List
     each.with_object(obj, &block)
   end
 
-  # TODO do this without mutating the list
   def flat_map(&block)
     return each unless block_given?
 
-    reduce(List[]) do |memo, elem|
+    reduce do |memo, elem|
       if elem.is_a?(List)
-        elem.each { |sub_elem| memo << sub_elem }
+        List[*memo, *elem]
       else
-        memo << elem
+        List[*memo, elem]
       end
-      memo
     end
   end
 
@@ -251,6 +250,10 @@ class List
     array.taint if tainted?
     array.untrust if untrusted?
     array
+  end
+  
+  def partition(&block)
+    List[select(&block), reject(&block)]
   end
 
   private
