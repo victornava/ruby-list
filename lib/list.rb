@@ -256,6 +256,15 @@ class List
     List[select(&block), reject(&block)]
   end
 
+  # TODO This might just be the inverse of #all?
+  def none?(&block)
+    each do |elem|
+      is_truthy = block_given? ? yield(elem) : elem
+      return false if is_truthy
+    end
+    true
+  end
+
   private
 
   def count_where(&block)

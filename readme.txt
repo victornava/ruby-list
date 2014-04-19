@@ -47,6 +47,7 @@ each_with_object
 flat_map
 to_a
 partition
+none?
 
 # To implement
 
@@ -67,7 +68,6 @@ group_by
 include?
 lazy
 member?
-none?
 one?
 reverse_each
 slice_before
