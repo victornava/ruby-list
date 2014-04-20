@@ -48,6 +48,7 @@ flat_map
 to_a
 partition
 none?
+take_while
 
 # To implement
 
@@ -71,7 +72,6 @@ member?
 one?
 reverse_each
 slice_before
-take_while
 to_h
 
 (From Array)

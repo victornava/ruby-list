@@ -1201,3 +1201,55 @@ describe "none?" do
     @l.none? {|e| e == 3 ? true : false }.should be_false
   end
 end
+
+describe "#take_while" do
+  before :each do
+    @list = List[3, 2, 1, :go]
+  end
+
+  it "returns an Enumerator if no block given" do
+    @list.take_while.should be_an_instance_of(Enumerator)
+  end
+
+  it "returns no/all elements for {true/false} block" do
+    @list.take_while{true}.should == @list
+    @list.take_while{false}.should == List[]
+  end
+
+  it "accepts returns other than true/false" do
+    @list.take_while{1}.should == @list
+    @list.take_while{nil}.should == List[]
+  end
+
+  it "passes elements to the block until the first false" do
+    a = []
+    @list.take_while{|obj| (a << obj).size < 3}.should == List[3, 2]
+    a.should == [3, 2, 1]
+  end
+
+  it "will only go through what's needed" do
+    list = List[4, 3, 2, 1, :stop]
+    list.take_while { |x|
+      break 42 if x == 3
+      true
+    }.should == 42
+  end
+
+  it "doesn't return self when it could" do
+    l = List[1,2,3]
+    l.take_while{true}.should_not equal(l)
+  end
+
+  it "returns all elements until the block returns false" do
+    List[1, 2, 3].take_while{ |element| element < 3 }.should == List[1, 2]
+  end
+
+  it "returns all elements until the block returns nil" do
+    List[1, 2, nil, 4].take_while{ |element| element }.should == List[1, 2]
+  end
+
+  it "returns all elements until the block returns false" do
+    List[1, 2, false, 4].take_while{ |element| element }.should == List[1, 2]
+  end
+end
+

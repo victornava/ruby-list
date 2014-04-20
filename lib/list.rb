@@ -265,6 +265,16 @@ class List
     true
   end
 
+  def take_while(&block)
+    return each unless block_given?
+
+    reduce(List[]) do |memo, elem|
+      return memo unless (block_given? ? yield(elem) : elem)
+      # TODO don't mutate. Could do memo + elem
+      memo << elem
+    end
+  end
+
   private
 
   def count_where(&block)
