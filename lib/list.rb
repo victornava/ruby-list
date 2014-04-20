@@ -284,6 +284,16 @@ class List
     end
   end
 
+  def find(ifnone = ->{}, &block)
+    if block_given?
+      found = reduce(List[]) do |memo, elem|
+        yield(elem) ? (memo << elem) : memo
+      end
+      found.any? ? found.first : ifnone.call
+    else
+      each_with_object(ifnone.call)
+    end
+  end
 
   private
 

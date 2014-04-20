@@ -50,6 +50,7 @@ partition
 none?
 take_while
 drop_while
+find
 
 # To implement
 
@@ -57,11 +58,9 @@ drop_while
 
 chunk
 cycle
-detect
 each_cons
 each_entry
 each_slice
-find
 find_all
 find_index
 grep
@@ -147,3 +146,4 @@ delete (mutable)
 delete_at (mutable)
 length (same as size)
 entries (same as to_a)
+detect (same as find)
