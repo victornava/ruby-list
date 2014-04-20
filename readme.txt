@@ -49,6 +49,7 @@ to_a
 partition
 none?
 take_while
+drop_while
 
 # To implement
 
@@ -57,7 +58,6 @@ take_while
 chunk
 cycle
 detect
-drop_while
 each_cons
 each_entry
 each_slice

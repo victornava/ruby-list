@@ -275,6 +275,16 @@ class List
     end
   end
 
+  def drop_while(&block)
+    return each unless block_given?
+
+    reduce(self.dup) do |memo, elem|
+      return memo unless (block_given? ? yield(elem) : elem)
+      memo.drop(1)
+    end
+  end
+
+
   private
 
   def count_where(&block)
