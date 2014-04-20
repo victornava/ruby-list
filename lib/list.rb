@@ -225,8 +225,8 @@ class List
   end
 
   def each_with_index(&block)
-    each.with_index(&block)
-    self
+    result = each.with_index(&block)
+    block_given? ? self : result
   end
 
   def each_with_object(obj, &block)
