@@ -222,7 +222,7 @@ class List
     # TODO use each_with_index
     result = (0..(size-1)).reduce(List[]) do |memo, i|
       temp = List[ self[i], *args.map { |arg| arg[i] } ]
-      memo << ( block_given? ? yield(temp) : temp )
+      memo << yield_or(temp, &block)
     end
     block_given? ? nil : result
   end
@@ -262,8 +262,7 @@ class List
   # TODO This might just be the inverse of #all?
   def none?(&block)
     each do |elem|
-      is_truthy = block_given? ? yield(elem) : elem
-      return false if is_truthy
+      return false if yield_or(elem, &block)
     end
     true
   end
@@ -272,7 +271,7 @@ class List
     return each unless block_given?
 
     reduce(List[]) do |memo, elem|
-      return memo unless (block_given? ? yield(elem) : elem)
+      return memo unless yield_or(elem, &block)
       # TODO don't mutate. Could do memo + elem
       memo << elem
     end
@@ -282,7 +281,7 @@ class List
     return each unless block_given?
 
     reduce(self.dup) do |memo, elem|
-      return memo unless (block_given? ? yield(elem) : elem)
+      return memo unless yield_or(elem, &block)
       memo.drop(1)
     end
   end
