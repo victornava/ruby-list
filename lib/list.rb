@@ -286,9 +286,7 @@ class List
 
   def find(ifnone = ->{}, &block)
     if block_given?
-      found = reduce(List[]) do |memo, elem|
-        yield(elem) ? (memo << elem) : memo
-      end
+      found = select(&block)
       found.any? ? found.first : ifnone.call
     else
       each_with_object(ifnone.call)

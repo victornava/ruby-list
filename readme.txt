@@ -52,6 +52,7 @@ take_while
 drop_while
 find
 
+
 # To implement
 
 (From Enumerable)
@@ -61,7 +62,6 @@ cycle
 each_cons
 each_entry
 each_slice
-find_all
 find_index
 grep
 group_by
@@ -147,3 +147,4 @@ delete_at (mutable)
 length (same as size)
 entries (same as to_a)
 detect (same as find)
+find_all (same as select)
