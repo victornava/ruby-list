@@ -347,6 +347,37 @@ describe "#any?" do
       @list2.any? { |i| i == :stuff }.should == false
     end
 
+    it "stops iterating once the return value is determined" do
+      yielded = []
+      List[:one, :two, :three].any? do |e|
+        yielded << e
+        false
+      end.should == false
+      yielded.should == [:one, :two, :three]
+
+      yielded = []
+      List[true, true, false, true].any? do |e|
+        yielded << e
+        e
+      end.should == true
+      yielded.should == [true]
+
+      yielded = []
+      List[false, nil, false, true, false].any? do |e|
+        yielded << e
+        e
+      end.should == true
+      yielded.should == [false, nil, false, true]
+
+      yielded = []
+      List[1, 2, 3, 4, 5].any? do |e|
+        yielded << e
+        e
+      end.should == true
+      yielded.should == [1]
+    end
+
+
     it "does not hide exceptions out of the block" do
       lambda {
         @list.any? { raise "from block" }

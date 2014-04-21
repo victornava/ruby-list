@@ -103,7 +103,10 @@ class List
   end
 
   def any?(&block)
-    map(&block).reduce(false, &:|)
+    each do |elem|
+      return true if yield_or(elem, &block)
+    end
+    false
   end
 
   def take(number)
@@ -297,5 +300,9 @@ class List
 
   def count_where(&block)
     select(&block).reduce(0) { |memo| memo + 1 }
+  end
+
+  def yield_or(elem, &block)
+    block_given? ? yield(elem) : elem
   end
 end
