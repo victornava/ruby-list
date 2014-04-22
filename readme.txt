@@ -53,6 +53,7 @@ drop_while
 find
 include?
 one?
+find_index
 
 
 # To implement
@@ -64,7 +65,6 @@ cycle
 each_cons
 each_entry
 each_slice
-find_index
 grep
 group_by
 lazy

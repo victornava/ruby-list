@@ -298,9 +298,24 @@ class List
   def include?(obj)
     any? {|elem| elem == obj }
   end
-  
+
   def one?(&block)
     select { |elem| yield_or(elem, &block) }.size == 1
+  end
+
+  # TODO Do you smell something here?
+  def find_index(arg=nil, &block)
+    return each unless arg || block_given?
+
+    each_with_index.map do |elem, index|
+      if arg
+        return index if arg == elem
+      else
+        return index if yield(elem)
+      end
+    end
+
+    return nil
   end
 
   private
