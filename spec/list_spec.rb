@@ -1418,10 +1418,6 @@ describe "#include?" do
     list.include?('11').should == true
   end
 
-  it "gathers whole arrays as elements when each yields multiple" do
-    YieldsMulti.new.include?([1,2]).should be_true
-  end
-
   it "calls == on elements from left to right until success" do
     key = "x"
     one = double('one')
