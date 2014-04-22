@@ -52,6 +52,7 @@ take_while
 drop_while
 find
 include?
+one?
 
 
 # To implement
@@ -67,8 +68,6 @@ find_index
 grep
 group_by
 lazy
-
-one?
 reverse_each
 slice_before
 to_h

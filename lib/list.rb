@@ -298,6 +298,10 @@ class List
   def include?(obj)
     any? {|elem| elem == obj }
   end
+  
+  def one?(&block)
+    select { |elem| yield_or(elem, &block) }.size == 1
+  end
 
   private
 
