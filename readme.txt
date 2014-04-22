@@ -51,6 +51,7 @@ none?
 take_while
 drop_while
 find
+include?
 
 
 # To implement
@@ -65,9 +66,8 @@ each_slice
 find_index
 grep
 group_by
-include?
 lazy
-member?
+
 one?
 reverse_each
 slice_before
@@ -148,3 +148,4 @@ length (same as size)
 entries (same as to_a)
 detect (same as find)
 find_all (same as select)
+member? (same as include)

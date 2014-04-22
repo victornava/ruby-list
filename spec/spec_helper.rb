@@ -76,3 +76,12 @@ class ListSpecs
     List[2, 5, 3, 6, 1, 4]
   end
 end
+
+class YieldsMulti
+  include Enumerable
+  def each
+    yield 1,2
+    yield 3,4,5
+    yield 6,7,8,9
+  end
+end

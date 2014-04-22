@@ -295,6 +295,10 @@ class List
     end
   end
 
+  def include?(obj)
+    any? {|elem| elem == obj }
+  end
+
   private
 
   def count_where(&block)
