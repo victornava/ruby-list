@@ -54,6 +54,7 @@ find
 include?
 one?
 find_index
+grep
 
 
 # To implement
@@ -65,7 +66,6 @@ cycle
 each_cons
 each_entry
 each_slice
-grep
 group_by
 lazy
 reverse_each

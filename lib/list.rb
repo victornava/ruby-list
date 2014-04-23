@@ -318,6 +318,11 @@ class List
     return nil
   end
 
+  def grep(arg, &block)
+    result = select { |elem| arg === elem }
+    block_given? ? result.map(&block) : result
+  end
+
   private
 
   def count_where(&block)
