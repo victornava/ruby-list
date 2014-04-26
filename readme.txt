@@ -57,7 +57,7 @@ find_index
 grep
 reverse_each
 each_cons
-
+each_slice
 
 # To implement
 
@@ -65,8 +65,6 @@ each_cons
 
 chunk
 cycle
-each_entry
-each_slice
 group_by
 lazy
 slice_before
@@ -148,3 +146,4 @@ entries (same as to_a)
 detect (same as find)
 find_all (same as select)
 member? (same as include)
+each_entry (same as each)

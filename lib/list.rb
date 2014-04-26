@@ -351,6 +351,27 @@ class List
     end
   end
 
+  def each_slice(arg, &block)
+    n = arg.to_int
+    raise ArgumentError unless n >= 1
+
+    n = size if n > size
+    slots = ((size / n) + (size % n))
+
+    objects = slots.times.map do |step|
+      from = step * n
+      to = from + n - 1
+      self[from..to]
+    end
+
+    if block_given?
+      objects.each(&block)
+      nil
+    else
+      objects.each
+    end
+  end
+
   private
 
   def reverse

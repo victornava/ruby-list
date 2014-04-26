@@ -415,7 +415,7 @@ describe "#take" do
     lambda { @list.take(-1) }.should raise_error(ArgumentError)
   end
 
-  it "returns the entire List when count > length" do
+  it "returns the entire List when count > size" do
     @list.take(100).should == @list
     @list.take(8).should == @list
   end
@@ -499,7 +499,7 @@ describe "#first" do
     lambda { List[1, 2].first(-1) }.should raise_error(ArgumentError)
   end
 
-  it "returns the entire List when count > length" do
+  it "returns the entire List when count > size" do
     List[1, 2, 3, 4, 5, 9].first(10).should == List[1, 2, 3, 4, 5, 9]
   end
 
@@ -604,7 +604,7 @@ describe "#min" do
     @i = -2
     List[11,12,22,33].min{|a, b| @i += 1 }.should == 12
 
-    @l_strs.min {|a,b| a.length <=> b.length }.should == "1"
+    @l_strs.min {|a,b| a.size <=> b.size }.should == "1"
     @l_strs.min {|a,b| a <=> b }.should == "1"
     @l_strs.min {|a,b| a.to_i <=> b.to_i }.should == "1"
     @l_ints.min {|a,b| a <=> b }.should == 22
@@ -632,7 +632,7 @@ describe "#min_by" do
 
   it "returns the object for whom the value returned by block is the largest" do
     List['3', '2', '1'].min_by {|obj| obj.to_i }.should == '1'
-    List['five', 'three'].min_by {|obj| obj.length }.should == 'five'
+    List['five', 'three'].min_by {|obj| obj.size }.should == 'five'
   end
 
   it "returns the object that appears first in #each in case of a tie" do
@@ -711,7 +711,7 @@ describe "#max" do
     List["2","33","4","11"].max {|a,b| b <=> a }.should == "11"
     List[ 2 , 33 , 4 , 11 ].max {|a,b| b <=> a }.should == 2
 
-    @l_strs.max {|a,b| a.length <=> b.length }.should == "1010101010"
+    @l_strs.max {|a,b| a.size <=> b.size }.should == "1010101010"
 
     @l_strs.max {|a,b| a <=> b }.should == "666666"
     @l_strs.max {|a,b| a.to_i <=> b.to_i }.should == "1010101010"
@@ -741,7 +741,7 @@ describe "#max_by" do
 
   it "returns the object for whom the value returned by block is the largest" do
     List['1', '2', '3'].max_by {|obj| obj.to_i }.should == '3'
-    List['three', 'five'].max_by {|obj| obj.length }.should == 'three'
+    List['three', 'five'].max_by {|obj| obj.size }.should == 'three'
   end
 
   it "returns the object that appears first in #each in case of a tie" do
@@ -796,7 +796,7 @@ describe "#minmax" do
 
   it "returns the minimum when using a block rule" do
     @list.minmax {|a,b| b <=> a }.should == List[10, 4]
-    @strs.minmax {|a,b| a.length <=> b.length }.should == List["2", "55555"]
+    @strs.minmax {|a,b| a.size <=> b.size }.should == List["2", "55555"]
   end
 end
 
@@ -811,7 +811,7 @@ describe "#minmax_by" do
 
   it "returns the object for whom the value returned by block is the largest" do
     List['1', '2', '3'].minmax_by {|obj| obj.to_i }.should == List['1', '3']
-    List['three', 'five'].minmax_by {|obj| obj.length }.should == List['five', 'three']
+    List['three', 'five'].minmax_by {|obj| obj.size }.should == List['five', 'three']
   end
 
   it "returns the object that appears first in #each in case of a tie" do
@@ -1591,10 +1591,10 @@ describe "#each_cons" do
 
     obj = double('to_int')
     obj.should_receive(:to_int).and_return(3)
-    @list.each_cons(obj){|g| break g.length}.should == 3
+    @list.each_cons(obj){|g| break g.size}.should == 3
   end
 
-  it "works when n is >= full length" do
+  it "works when n is >= full size" do
     acc = []
     full = @list.to_a
     @list.each_cons(full.size){|g| acc << g}
@@ -1617,4 +1617,58 @@ describe "#each_cons" do
     e.to_a.should == @in_threes
   end
 end
+
+describe "#each_slice" do
+  before :each do
+    @list = List[7,6,5,4,3,2,1]
+    @sliced = [[7,6,5],[4,3,2],[1]]
+  end
+
+  it "passes element groups to the block" do
+    acc = []
+    @list.each_slice(3){|g| acc << g}.should be_nil
+    acc.should == @sliced
+  end
+
+  it "raises an Argument Error if there is not a single parameter > 0" do
+    lambda{ @list.each_slice(0){}    }.should raise_error(ArgumentError)
+    lambda{ @list.each_slice(-2){}   }.should raise_error(ArgumentError)
+    lambda{ @list.each_slice{}       }.should raise_error(ArgumentError)
+    lambda{ @list.each_slice(2,2){}  }.should raise_error(ArgumentError)
+  end
+
+  it "tries to convert n to an Integer using #to_int" do
+    acc = []
+    @list.each_slice(3.3){|g| acc << g}.should == nil
+    acc.should == @sliced
+
+    obj = double('to_int')
+    obj.should_receive(:to_int).and_return(3)
+    @list.each_slice(obj){|g| break g.size}.should == 3
+  end
+
+  it "works when n is >= full size" do
+    full = @list.to_a
+    acc = []
+    @list.each_slice(full.size){|g| acc << g}
+    acc.should == [full]
+    acc = []
+    @list.each_slice(full.size+1){|g| acc << g}
+    acc.should == [full]
+  end
+
+  it "yields only as much as needed" do
+    times_yielded = 0
+    cnt = [1, 2, :stop, "I said stop!", :got_it]
+    cnt.each_slice(2) {|g| times_yielded += 1; break 42 if g[0] == :stop }.should == 42
+    times_yielded.should == 2
+  end
+
+  it "returns an enumerator if no block" do
+    e = @list.each_slice(3)
+    e.should be_an_instance_of(Enumerator)
+    e.to_a.should == @sliced
+  end
+end
+
 
