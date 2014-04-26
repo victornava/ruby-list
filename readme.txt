@@ -56,6 +56,7 @@ one?
 find_index
 grep
 reverse_each
+each_cons
 
 
 # To implement
@@ -64,7 +65,6 @@ reverse_each
 
 chunk
 cycle
-each_cons
 each_entry
 each_slice
 group_by

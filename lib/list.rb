@@ -332,6 +332,25 @@ class List
     end
   end
 
+  def each_cons(arg, &block)
+    cons = arg.to_int
+    raise ArgumentError unless cons >= 1
+
+    step_size = cons - 1
+    indexes = List[*(0..(size - cons))]
+
+    objects = indexes.map do |i|
+      self[i..(i + step_size)]
+    end
+
+    if block_given?
+      objects.each(&block)
+      nil
+    else
+      objects.each
+    end
+  end
+
   private
 
   def reverse
