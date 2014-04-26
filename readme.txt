@@ -55,6 +55,7 @@ include?
 one?
 find_index
 grep
+reverse_each
 
 
 # To implement
@@ -68,7 +69,6 @@ each_entry
 each_slice
 group_by
 lazy
-reverse_each
 slice_before
 to_h
 

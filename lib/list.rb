@@ -323,7 +323,20 @@ class List
     block_given? ? result.map(&block) : result
   end
 
+  def reverse_each(&block)
+    if block_given?
+      reverse.each { |elem| yield(elem) }
+      self
+    else
+      reverse.each
+    end
+  end
+
   private
+
+  def reverse
+    List[*(1..size)].map{ |i| self[-i] }
+  end
 
   def count_where(&block)
     select(&block).reduce(0) { |memo| memo + 1 }
