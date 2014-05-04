@@ -58,6 +58,7 @@ grep
 reverse_each
 each_cons
 each_slice
+slice_before
 
 # To implement
 
@@ -67,7 +68,6 @@ chunk
 cycle
 group_by
 lazy
-slice_before
 to_h
 
 (From Array)

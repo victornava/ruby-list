@@ -372,6 +372,35 @@ class List
     end
   end
 
+  # TODO I'm not happy with this code. It looks complicated.
+  # Not sure if it's becauce the behariour of the method is complex or
+  # I haven't understood it properly.
+  def slice_before(arg=nil, &block)
+    raise ArgumentError unless arg || block
+    slice_here = ->(elem, arg, &block) do
+      if block_given?
+        arg ? yield(elem, arg.dup) : yield(elem)
+      else
+        arg === elem
+      end
+    end
+
+    result = List[]
+    section = List[]
+
+    each do |elem|
+      if slice_here.(elem, arg, &block) && section.any?
+        result << section
+        section = List[]
+      end
+
+      section << elem
+    end
+
+    result << section if section.any?
+    result.each
+  end
+
   private
 
   def reverse
