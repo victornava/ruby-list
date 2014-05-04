@@ -59,12 +59,11 @@ reverse_each
 each_cons
 each_slice
 slice_before
+chunk
 
 # To implement
 
 (From Enumerable)
-
-chunk
 cycle
 group_by
 lazy

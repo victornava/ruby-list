@@ -401,6 +401,25 @@ class List
     result.each
   end
 
+  def chunk(initial_state=nil, &block)
+    raise ArgumentError unless block
+
+    mapper = ->(e) { initial_state ? yield(e, initial_state.dup) : yield(e) }
+
+    reducer = ->(memo, pair) do
+      if memo.any? && memo[-1][0] == pair[0]
+        memo[-1][1] << pair[1]
+      else
+        memo << List[pair[0], List[pair[1]]]
+      end
+      memo
+    end
+
+    rejector = ->(p) { p[0] == :_separator || p[0] == nil }
+
+    map(&mapper).zip(self).reduce(List[], &reducer).reject(&rejector).each
+  end
+
   private
 
   def reverse
