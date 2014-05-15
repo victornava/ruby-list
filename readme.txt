@@ -60,14 +60,14 @@ each_cons
 each_slice
 slice_before
 chunk
+cycle
 
 # To implement
 
 (From Enumerable)
-cycle
+
 group_by
 lazy
-to_h
 
 (From Array)
 

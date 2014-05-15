@@ -420,6 +420,22 @@ class List
     map(&mapper).zip(self).reduce(List[], &reducer).reject(&rejector).each
   end
 
+  def cycle(arg=nil, &block)
+    return nil unless any?
+
+    if arg.nil?
+      while true do
+        each(&block)
+      end
+    else
+      raise TypeError unless arg.respond_to?(:to_int)
+      n = arg.to_int
+      raise TypeError unless n.is_a?(Integer)
+      return nil unless n > 0
+      n.times { each(&block) }
+    end
+  end
+
   private
 
   def reverse
