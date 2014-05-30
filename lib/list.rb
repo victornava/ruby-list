@@ -469,6 +469,14 @@ class List
     !any?
   end
 
+  def uniq(&block)
+    reduce(self.class[]) do |memo, elem|
+      val = yield_or(elem, &block)
+      memo << elem unless memo.any? { |x| x.eql?(val) }
+      memo
+    end
+  end
+
   private
 
   def count_where(&block)

@@ -71,6 +71,7 @@ lazy
 reverse
 last
 empty?
+uniq
 
 
 # To implement
@@ -114,7 +115,6 @@ slice
 to_ary
 to_s
 transpose
-uniq
 values_at
 |
 
