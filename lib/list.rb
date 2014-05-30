@@ -452,11 +452,11 @@ class List
     each.lazy
   end
 
-  private
-
   def reverse
     List[*(1..size)].map{ |i| self[-i] }
   end
+
+  private
 
   def count_where(&block)
     select(&block).reduce(0) { |memo| memo + 1 }

@@ -66,9 +66,12 @@ cycle
 group_by
 lazy
 
-# To implement
-
 (From Array)
+
+reverse
+
+
+# To implement
 
 ::new
 ::try_convert
@@ -107,7 +110,6 @@ rassoc
 repeated_combination
 repeated_permutation
 replace
-reverse
 rindex
 rotate
 sample
