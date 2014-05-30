@@ -61,12 +61,12 @@ each_slice
 slice_before
 chunk
 cycle
+group_by
 
 # To implement
 
 (From Enumerable)
 
-group_by
 lazy
 
 (From Array)

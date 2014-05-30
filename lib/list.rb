@@ -436,6 +436,18 @@ class List
     end
   end
 
+  def group_by(&block)
+    reduce({}) do |memo, elem|
+      key = yield(elem)
+      if memo[key]
+        memo[key] << elem
+      else
+        memo[key] = List[elem]
+      end
+      memo
+    end
+  end
+
   private
 
   def reverse
