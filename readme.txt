@@ -69,6 +69,7 @@ lazy
 (From Array)
 
 reverse
+last
 
 
 # To implement
@@ -85,10 +86,8 @@ reverse
 assoc
 at
 bsearch
-clear
 combination
 compact
-concat
 each_index
 empty?
 eql?
@@ -99,10 +98,8 @@ frozen?
 hash
 index
 initialize_copy
-insert
 inspect
 join
-last
 pack
 permutation
 product
@@ -147,3 +144,6 @@ detect (same as find)
 find_all (same as select)
 member? (same as include)
 each_entry (same as each)
+clear (mutable)
+concat (mutable)
+insert (mutable)

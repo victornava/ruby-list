@@ -456,6 +456,15 @@ class List
     List[*(1..size)].map{ |i| self[-i] }
   end
 
+  # TODO Find a better way to test if an argument was given
+  def last(elem_count=:no_argument)
+    if elem_count == :no_argument
+      self[size - 1]
+    else
+      reverse.take(elem_count).reverse
+    end
+  end
+
   private
 
   def count_where(&block)
