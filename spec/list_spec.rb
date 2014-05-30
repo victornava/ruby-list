@@ -1997,3 +1997,12 @@ describe "#last" do
     list.should == List[1, 2, 3]
   end
 end
+
+describe "#empty?" do
+  it "returns true if the array has no elements" do
+    List[].empty?.should == true
+    List[1].empty?.should == false
+    List[1, 2].empty?.should == false
+  end
+end
+

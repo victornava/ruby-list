@@ -70,6 +70,7 @@ lazy
 
 reverse
 last
+empty?
 
 
 # To implement
@@ -89,7 +90,6 @@ bsearch
 combination
 compact
 each_index
-empty?
 eql?
 fetch
 fill
@@ -106,7 +106,6 @@ product
 rassoc
 repeated_combination
 repeated_permutation
-replace
 rindex
 rotate
 sample
@@ -147,3 +146,4 @@ each_entry (same as each)
 clear (mutable)
 concat (mutable)
 insert (mutable)
+replace (mutable)

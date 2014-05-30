@@ -465,6 +465,10 @@ class List
     end
   end
 
+  def empty?
+    !any?
+  end
+
   private
 
   def count_where(&block)
