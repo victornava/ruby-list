@@ -448,6 +448,10 @@ class List
     end
   end
 
+  def lazy
+    each.lazy
+  end
+
   private
 
   def reverse

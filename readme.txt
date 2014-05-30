@@ -22,6 +22,8 @@ I'm interested only on the immutable methods so all mutable methods with "!" are
 
 # Implemented
 
+(From Enumerable)
+
 map
 reduce
 count
@@ -62,12 +64,9 @@ slice_before
 chunk
 cycle
 group_by
+lazy
 
 # To implement
-
-(From Enumerable)
-
-lazy
 
 (From Array)
 

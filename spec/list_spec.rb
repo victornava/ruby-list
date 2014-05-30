@@ -1909,3 +1909,8 @@ describe "#group_by" do
     h.default.should be_nil
   end
 end
+
+describe "#lazy" do
+  List[].lazy.kind_of?(Enumerator::Lazy).should == true
+end
+
