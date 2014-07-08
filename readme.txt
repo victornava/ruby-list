@@ -72,6 +72,7 @@ reverse
 last
 empty?
 uniq
+compact
 
 
 # To implement
@@ -89,7 +90,7 @@ assoc
 at
 bsearch
 combination
-compact
+
 each_index
 eql?
 fetch

@@ -477,6 +477,10 @@ class List
     end
   end
 
+  def compact
+    select {|e| e }
+  end
+
   private
 
   def count_where(&block)
