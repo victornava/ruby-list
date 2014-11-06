@@ -1,23 +1,24 @@
 # What
 
-This is an implementation or Ruby's Array class
+This is an implementation of Ruby's Array class. In ruby and in a functional style.
 
-Will use an array as internal representation
-The goal is to implement most of the functionality from Array by just using its #each method,
+The goal is to implement most of the functionality from Array relying only on the #each method,
 like Enumerable does.
 
-I'm interested only on the immutable methods so all mutable methods with "!" are not implemented.
+Uses Array as internal representation
+
+I'm interested only in immutable methods so methods with the bang "!" are not implemented.
 
 # Why?
 
-- To learn
+- To learn betters ways work with lists
+- To explore functional concepts
 - For fun
 
 # Goals
 
-- Implement all the methods
+- Implement all non-mutable methods
 - Don't delegate anything other than each
-- Work only with immutable methods internally
 - Use enumerator rather than array
 
 # Implemented
@@ -73,6 +74,7 @@ last
 empty?
 uniq
 compact
+join
 
 
 # To implement
@@ -90,7 +92,6 @@ assoc
 at
 bsearch
 combination
-
 each_index
 eql?
 fetch
@@ -101,7 +102,6 @@ hash
 index
 initialize_copy
 inspect
-join
 pack
 permutation
 product
@@ -119,11 +119,13 @@ transpose
 values_at
 |
 
+
 # Delegated to array
 ::[]
 each
 <<
 ==
+
 
 # Not implemented
 collect_concat (same as flat_map)
