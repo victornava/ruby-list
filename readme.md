@@ -21,7 +21,10 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - Don't delegate anything other than each
 - Use enumerator rather than array
 
-# Implemented
+# Disclamer
+I borrowed the tests from the Rubinius project.
+
+# Done
 
 (From Enumerable)
 
@@ -77,7 +80,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - join
 
 
-# To implement
+# Todo
 
 - ::new
 - ::try_convert
@@ -127,7 +130,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - ==
 
 
-# Not implemented
+# Won't implement
 - collect_concat (same as flat_map)
 - inject (same as reduce)
 - collect (same as map)
