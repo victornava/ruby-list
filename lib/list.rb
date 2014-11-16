@@ -481,6 +481,22 @@ class List
     select {|e| e }
   end
 
+  def join(separator=$,)
+    return '' if empty?
+    flatten.map(&:to_s).reduce  { |memo, elem| memo << separator << elem }
+  end
+
+  # TODO Temporary method. Needs testing.
+  def flatten
+    reduce do |memo, elem|
+      if elem.is_a?(List)
+        List[*memo, *elem.flatten]
+      else
+        List[*memo, elem]
+      end
+    end
+  end
+
   private
 
   def count_where(&block)
@@ -490,4 +506,5 @@ class List
   def yield_or(elem, &block)
     block_given? ? yield(elem) : elem
   end
+
 end
