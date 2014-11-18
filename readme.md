@@ -78,6 +78,7 @@ I borrowed the tests from the Rubinius project.
 - uniq
 - compact
 - join
+- flatten
 
 
 # Todo
@@ -99,7 +100,6 @@ I borrowed the tests from the Rubinius project.
 - eql?
 - fetch
 - fill
-- flatten
 - frozen?
 - hash
 - index

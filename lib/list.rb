@@ -486,13 +486,17 @@ class List
     flatten.map(&:to_s).reduce  { |memo, elem| memo << separator << elem }
   end
 
-  # TODO Temporary method. Needs testing.
-  def flatten
-    reduce do |memo, elem|
-      if elem.is_a?(List)
-        List[*memo, *elem.flatten]
+  # TODO use infinity as initial recusion level
+  def flatten(recursion_level=5000)
+    raise TypeError unless recursion_level.respond_to?(:to_int)
+    recursion_level = recursion_level.to_int
+    depth = recursion_level >= 0 ? recursion_level : 5000
+
+    reduce(self.class[]) do |memo, elem|
+      if elem.is_a?(List) && depth > 0
+        self.class[*memo, *elem.flatten(depth-1)]
       else
-        List[*memo, elem]
+        self.class[*memo, elem]
       end
     end
   end
