@@ -516,7 +516,7 @@ class List
   def self.transfer(index, from, to)
     [
       from.remove_at(index),
-      to << from[index]
+      List[*to, from[index]]
     ]
   end
 
