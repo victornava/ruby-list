@@ -79,6 +79,7 @@ I borrowed the tests from the Rubinius project.
 - compact
 - join
 - flatten
+- shuffle
 
 
 # Todo
@@ -114,7 +115,6 @@ I borrowed the tests from the Rubinius project.
 - rindex
 - rotate
 - sample
-- shuffle
 - slice
 - to_ary
 - to_s

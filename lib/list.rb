@@ -501,6 +501,25 @@ class List
     end
   end
 
+  def shuffle(random: nil)
+    reduce([self.dup, List[]]) do |memo, _|
+      from, to = memo
+      index = (random && random.respond_to?(:rand) ? random.rand(from.size) : rand(from.size))
+      List.transfer(index, from, to)
+    end.last
+  end
+
+  def remove_at(index)
+    List[*each_with_index].reject { |elem, i|  index == i }.map(&:first)
+  end
+
+  def self.transfer(index, from, to)
+    [
+      from.remove_at(index),
+      to << from[index]
+    ]
+  end
+
   private
 
   def count_where(&block)
