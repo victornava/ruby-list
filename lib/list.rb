@@ -198,16 +198,9 @@ class List
 
   # TODO This is extremelly slow :P use a faster algorithm
   def sort(&block)
-    left = List[]
-    right = self.dup
-
-    while right.any?
-      min = right.min(&block)
-      right.select { |o| o == min }.each { |o| left << o }
-      right = right.reject { |o| o == min }
+    order_by ->(from) do
+      from.find_index(from.min(&block))
     end
-
-    left
   end
 
   def sort_by(&block)
@@ -502,25 +495,28 @@ class List
   end
 
   def shuffle(random: nil)
-    reduce([self.dup, List[]]) do |memo, _|
-      from, to = memo
-      index = (random && random.respond_to?(:rand) ? random.rand(from.size) : rand(from.size))
-      List.transfer(index, from, to)
-    end.last
+    order_by ->(from) do
+      random && random.respond_to?(:rand) ? random.rand(from.size) : rand(from.size)
+    end
   end
 
-  def remove_at(index)
-    List[*each_with_index].reject { |elem, i|  index == i }.map(&:first)
-  end
-
+  # Transfer an object from a list to another list by the given index
+  # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]] 
   def self.transfer(index, from, to)
-    [
-      from.remove_at(index),
+    List[
+      List[*from.each_with_index].reject { |elem, i|  index == i }.map(&:first),
       List[*to, from[index]]
     ]
   end
 
   private
+
+  def order_by(index_finder)
+    reduce(List[self.dup, List[]]) do |memo, _|
+      from, to = *memo
+      List.transfer(index_finder.call(from), from, to)
+    end.last
+  end
 
   def count_where(&block)
     select(&block).reduce(0) { |memo| memo + 1 }
