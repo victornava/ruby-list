@@ -514,6 +514,12 @@ class List
     '[' + map(&convert).join(', ') + ']'
   end
 
+  def eql?(other)
+    return false unless other.is_a?(List)
+    return false unless size == other.size
+    zip(other).all? { |p| p.first == p.last && p.first.class == p.last.class }
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
