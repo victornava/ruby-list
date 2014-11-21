@@ -500,8 +500,22 @@ class List
     end
   end
 
+  def inspect
+    convert = ->(elem) do
+      if self == elem
+        "[...]"
+      elsif elem.is_a?(String)
+        '"'+ elem + '"'
+      else
+        elem.inspect
+      end
+    end
+
+    '[' + map(&convert).join(', ') + ']'
+  end
+
   # Transfer an object from a list to another list by the given index
-  # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]] 
+  # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
     List[
       List[*from.each_with_index].reject { |elem, i|  index == i }.map(&:first),
@@ -525,5 +539,4 @@ class List
   def yield_or(elem, &block)
     block_given? ? yield(elem) : elem
   end
-
 end

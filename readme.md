@@ -80,6 +80,8 @@ I borrowed the tests from the Rubinius project.
 - join
 - flatten
 - shuffle
+- inspect
+
 
 
 # Todo
@@ -105,7 +107,6 @@ I borrowed the tests from the Rubinius project.
 - hash
 - index
 - initialize_copy
-- inspect
 - pack
 - permutation
 - product
@@ -117,7 +118,6 @@ I borrowed the tests from the Rubinius project.
 - sample
 - slice
 - to_ary
-- to_s
 - transpose
 - values_at
 - |
@@ -153,3 +153,4 @@ I borrowed the tests from the Rubinius project.
 - concat (mutable)
 - insert (mutable)
 - replace (mutable)
+- to_s (same as inspect)
