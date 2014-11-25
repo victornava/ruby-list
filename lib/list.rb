@@ -521,15 +521,7 @@ class List
   end
 
   def at(index)
-    raise TypeError unless index.respond_to?(:to_int)
-    i = index.to_int
-    target_index = i >= 0 ? i : (size + i)
-
-    each_with_index do |e, i|
-      return e if target_index == i
-    end
-
-    return nil
+    fetch(index, nil)
   end
 
   def fetch(index, default=:no_argument, &block)
