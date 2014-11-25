@@ -520,6 +520,18 @@ class List
     zip(other).all? { |p| p.first == p.last && p.first.class == p.last.class }
   end
 
+  def at(index)
+    raise TypeError unless index.respond_to?(:to_int)
+    i = index.to_int
+    target_index = i >= 0 ? i : (size + i)
+
+    each_with_index do |e, i|
+      return e if target_index == i
+    end
+
+    return nil
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)

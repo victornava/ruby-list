@@ -81,8 +81,8 @@ I borrowed the tests from the Rubinius project.
 - flatten
 - shuffle
 - inspect
-
-
+- eql?
+- at
 
 # Todo
 
@@ -96,11 +96,9 @@ I borrowed the tests from the Rubinius project.
 - []
 - []=
 - assoc
-- at
 - bsearch
 - combination
 - each_index
-- eql?
 - fetch
 - fill
 - frozen?
