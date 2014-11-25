@@ -83,6 +83,7 @@ I borrowed the tests from the Rubinius project.
 - inspect
 - eql?
 - at
+- fetch
 
 # Todo
 
@@ -99,7 +100,6 @@ I borrowed the tests from the Rubinius project.
 - bsearch
 - combination
 - each_index
-- fetch
 - fill
 - frozen?
 - hash

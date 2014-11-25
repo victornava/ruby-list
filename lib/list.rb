@@ -532,6 +532,24 @@ class List
     return nil
   end
 
+  def fetch(index, default=:no_argument, &block)
+    raise TypeError unless index.respond_to?(:to_int)
+    i = index.to_int
+    target_index = i >= 0 ? i : (size + i)
+
+    each_with_index do |e, i|
+      return e if target_index == i
+    end
+
+    if block_given?
+      yield(index)
+    elsif default == :no_argument
+      raise(IndexError)
+    else
+      default
+    end
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
