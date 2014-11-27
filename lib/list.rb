@@ -542,6 +542,30 @@ class List
     end
   end
 
+  def slice(*args)
+    arg1, arg2 = args
+
+    if arg1.is_a?(Range)
+      range = arg1
+      range_first = range.first.to_int rescue (raise TypeError)
+      range_last = range.last.to_int rescue (raise TypeError)
+      from = real_index(range_first)
+      to = range.exclude_end? ? real_index(range_last) - 1 : real_index(range_last)
+      x = to - from + 1
+      n = x < 0 ? 0 : x
+      sub_list(from, n)
+
+    elsif arg1 && arg2
+      from = real_index(arg1.to_int)
+      n = arg2.to_int
+      return nil if n < 0
+      sub_list(from, n)
+
+    else arg1
+      at(arg1)
+    end
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
@@ -552,6 +576,15 @@ class List
   end
 
   private
+
+  def real_index(relative_index)
+    relative_index >= 0 ? relative_index : size - relative_index.abs
+  end
+
+  def sub_list(from, n)
+    return nil if from > size || from < 0
+    self.class[*drop(from).take(n)]
+  end
 
   def order_by(index_finder)
     reduce(List[self.dup, List[]]) do |memo, _|

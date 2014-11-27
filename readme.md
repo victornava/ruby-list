@@ -103,7 +103,6 @@ I borrowed the tests from the Rubinius project.
 - fill
 - frozen?
 - hash
-- index
 - initialize_copy
 - pack
 - permutation
@@ -152,3 +151,4 @@ I borrowed the tests from the Rubinius project.
 - insert (mutable)
 - replace (mutable)
 - to_s (same as inspect)
+- index (same as find_index)
