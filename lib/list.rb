@@ -16,11 +16,6 @@ class List
     @array = Array[*args]
   end
 
-  # TODO delegate to slice
-  def [](*args)
-    @array[*args]
-  end
-
   # TODO implement this
   def []=(index, value)
     @array[index] = value
@@ -601,4 +596,6 @@ class List
   def yield_or(elem, &block)
     block_given? ? yield(elem) : elem
   end
+
+  alias_method :[], :slice
 end

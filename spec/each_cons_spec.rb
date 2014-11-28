@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "#each_cons" do
   before :each do
     @list = List[4,3,2,1]
-    @in_threes = [[4,3,2], [3,2,1]]
+    @in_threes = List[List[4,3,2], List[3,2,1]]
   end
 
   it "passes element groups to the block and returns nil" do
-    acc = []
+    acc = List[]
     @list.each_cons(3) {|g| acc << g}.should be_nil
     acc.should == @in_threes
   end
@@ -20,7 +20,7 @@ describe "#each_cons" do
   end
 
   it "tries to convert n to an Integer using #to_int" do
-    acc = []
+    acc = List[]
     @list.each_cons(3.3){|g| acc << g}.should == nil
     acc.should == @in_threes
 
@@ -30,25 +30,23 @@ describe "#each_cons" do
   end
 
   it "works when n is >= full size" do
-    acc = []
-    full = @list.to_a
+    acc = List[]
+    full = @list
     @list.each_cons(full.size){|g| acc << g}
-    acc.should == [full]
-    acc = []
+    acc.should == List[full]
+    acc = List[]
     @list.each_cons(full.size+1){|g| acc << g}
-    acc.should == []
+    acc.should == List[]
   end
 
   it "yields only as much as needed" do
     counter = 0
-    cnt = [1, 2, :stop, "I said stop!", :got_it]
+    cnt = List[1, 2, :stop, "I said stop!", :got_it]
     cnt.each_cons(2) {|g| counter += 1; break 42 if g.last == :stop }.should == 42
     counter.should == 2
   end
 
   it "returns an enumerator if no block" do
-    e = @list.each_cons(3)
-    e.should be_an_instance_of(Enumerator)
-    e.to_a.should == @in_threes
+    @list.each_cons(3).should be_an_instance_of(Enumerator)
   end
 end

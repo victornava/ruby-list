@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "#each_slice" do
   before :each do
     @list = List[7,6,5,4,3,2,1]
-    @sliced = [[7,6,5],[4,3,2],[1]]
+    @sliced = List[List[7,6,5], List[4,3,2], List[1]]
   end
 
   it "passes element groups to the block" do
-    acc = []
+    acc = List[]
     @list.each_slice(3){|g| acc << g}.should be_nil
     acc.should == @sliced
   end
@@ -20,7 +20,7 @@ describe "#each_slice" do
   end
 
   it "tries to convert n to an Integer using #to_int" do
-    acc = []
+    acc = List[]
     @list.each_slice(3.3){|g| acc << g}.should == nil
     acc.should == @sliced
 
@@ -30,13 +30,13 @@ describe "#each_slice" do
   end
 
   it "works when n is >= full size" do
-    full = @list.to_a
-    acc = []
+    full = @list
+    acc = List[]
     @list.each_slice(full.size){|g| acc << g}
-    acc.should == [full]
-    acc = []
+    acc.should == List[full]
+    acc = List[]
     @list.each_slice(full.size+1){|g| acc << g}
-    acc.should == [full]
+    acc.should == List[full]
   end
 
   it "yields only as much as needed" do
@@ -47,8 +47,6 @@ describe "#each_slice" do
   end
 
   it "returns an enumerator if no block" do
-    e = @list.each_slice(3)
-    e.should be_an_instance_of(Enumerator)
-    e.to_a.should == @sliced
+    @list.each_slice(3).should be_an_instance_of(Enumerator)
   end
 end
