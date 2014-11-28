@@ -86,6 +86,7 @@ I borrowed the tests from the Rubinius project.
 - fetch
 - slice
 - to_ary
+- each_index
 
 # Todo
 
@@ -101,7 +102,6 @@ I borrowed the tests from the Rubinius project.
 - assoc
 - bsearch
 - combination
-- each_index
 - fill
 - frozen?
 - hash

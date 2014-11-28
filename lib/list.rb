@@ -243,7 +243,7 @@ class List
     array.untrust if untrusted?
     array
   end
-  
+
   def to_ary
     self
   end
@@ -564,6 +564,11 @@ class List
     else arg1
       at(arg1)
     end
+  end
+
+  def each_index(&block)
+    (0...size).each(&block)
+    self
   end
 
   # Transfer an object from a list to another list by the given index
