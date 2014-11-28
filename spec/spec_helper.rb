@@ -38,20 +38,6 @@ class UFOSceptic
 end
 
 class ListSpecs
-  # SampleRange = 0..1000
-  # SampleCount = 1000
-
-  # def self.frozen_list
-  #   frozen_list = [1,2,3]
-  #   frozen_list.freeze
-  #   frozen_list
-  # end
-  #
-  # def self.empty_frozen_list
-  #   frozen_list = []
-  #   frozen_list.freeze
-  #   frozen_list
-  # end
 
   def self.recursive_list
     a = List[1, 'two', 3.0]

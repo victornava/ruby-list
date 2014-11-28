@@ -244,6 +244,7 @@ class List
     array
   end
 
+  # TODO fix this
   def to_ary
     self
   end
@@ -569,6 +570,28 @@ class List
   def each_index(&block)
     (0...size).each(&block)
     self
+  end
+
+  # TODO Think about this again.
+  def values_at(*args)
+    args.reduce(List[]) do |memo, arg|
+      if arg.is_a?(Range)
+        from = real_index(arg.first.to_int)
+        to = real_index(arg.exclude_end? ? arg.last.to_int - 1 : arg.last.to_int)
+
+        memo << case
+        when from < to
+          List[*(from..to)].map { |i| at(i) }
+        when from > to
+          List[]
+        else
+          at(arg)
+        end
+      else
+        memo << self[arg]
+      end
+      memo
+    end.flatten
   end
 
   # Transfer an object from a list to another list by the given index
