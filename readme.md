@@ -84,6 +84,8 @@ I borrowed the tests from the Rubinius project.
 - eql?
 - at
 - fetch
+- slice
+- to_ary
 
 # Todo
 
@@ -113,8 +115,6 @@ I borrowed the tests from the Rubinius project.
 - rindex
 - rotate
 - sample
-- slice
-- to_ary
 - transpose
 - values_at
 - |

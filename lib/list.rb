@@ -243,6 +243,10 @@ class List
     array.untrust if untrusted?
     array
   end
+  
+  def to_ary
+    self
+  end
 
   def partition(&block)
     List[select(&block), reject(&block)]
