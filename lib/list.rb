@@ -16,6 +16,7 @@ class List
     @array = Array[*args]
   end
 
+  # TODO delegate to slice
   def [](*args)
     @array[*args]
   end

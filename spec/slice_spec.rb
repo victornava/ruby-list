@@ -383,4 +383,11 @@ describe "#slice" do
       @list.slice(-3...-1).should be_an_instance_of(ListSubclass)
     end
   end
+
+  # TODO delegate to slice
+  describe "#[]" do
+    it "delegates to Array" do
+      List[0,1,2][1].should == 1
+    end
+  end
 end
