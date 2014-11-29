@@ -245,9 +245,9 @@ class List
   end
 
   # TODO fix this
-  def to_ary
-    self
-  end
+  # def to_ary
+  #   self
+  # end
 
   def partition(&block)
     List[select(&block), reject(&block)]
@@ -596,6 +596,19 @@ class List
 
   def sample(random: nil)
     at(random ? random.rand(size) : rand(size))
+  end
+
+  def rotate(places=1)
+    return self.dup if (size == 0 || size == 1)
+
+    n = places.to_int rescue (raise TypeError)
+    mod = n.abs % size
+
+    if n > 0
+      List[drop(mod), take(mod)].flatten
+    else
+      List[reverse.take(mod).reverse, reverse.drop(mod).reverse].flatten
+    end
   end
 
   # Transfer an object from a list to another list by the given index
