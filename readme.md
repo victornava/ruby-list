@@ -85,19 +85,22 @@ I borrowed the tests from the Rubinius project.
 - at
 - fetch
 - slice
+- []
 - to_ary
 - each_index
+- values_at
+- sample
 
 # Todo
 
 - ::new
 - ::try_convert
 - &
+- |
 - *
 - +
 - -
 - <=>
-- []
 - []=
 - assoc
 - bsearch
@@ -105,7 +108,6 @@ I borrowed the tests from the Rubinius project.
 - fill
 - frozen?
 - hash
-- initialize_copy
 - pack
 - permutation
 - product
@@ -114,10 +116,7 @@ I borrowed the tests from the Rubinius project.
 - repeated_permutation
 - rindex
 - rotate
-- sample
 - transpose
-- values_at
-- |
 
 
 # Delegated to array
@@ -152,3 +151,4 @@ I borrowed the tests from the Rubinius project.
 - replace (mutable)
 - to_s (same as inspect)
 - index (same as find_index)
+- initialize_copy (mutable)

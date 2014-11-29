@@ -594,6 +594,10 @@ class List
     end.flatten
   end
 
+  def sample(random: nil)
+    at(random ? random.rand(size) : rand(size))
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
