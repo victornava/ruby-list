@@ -617,6 +617,12 @@ class List
     end
   end
 
+  def rassoc(obj)
+    find do |elem|
+      elem.is_a?(List) && obj == elem[1]
+    end
+  end
+
   # Transfer an object from a list to another list by the given index
   # List.transfer(1, List[1, 2, 3], List[4]) -> [[1, 3],[4, 2]]
   def self.transfer(index, from, to)
@@ -627,6 +633,8 @@ class List
   end
 
   private
+
+
 
   def real_index(relative_index)
     relative_index >= 0 ? relative_index : size - relative_index.abs

@@ -92,30 +92,29 @@ I borrowed the tests from the Rubinius project.
 - sample
 - rotate
 - assoc
+- rassoc
 
 # Todo
-
-- ::new
-- ::try_convert
 - &
 - |
 - *
 - +
 - -
-- <=>
-- []=
 - bsearch
 - combination
 - hash
 - pack
 - permutation
 - product
-- rassoc
+
 - repeated_combination
 - repeated_permutation
 - rindex
 - transpose
-
+- <=>
+- []=
+- ::new
+- ::try_convert
 
 # Delegated to array
 - ::[]
