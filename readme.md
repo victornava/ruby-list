@@ -90,6 +90,8 @@ I borrowed the tests from the Rubinius project.
 - each_index
 - values_at
 - sample
+- rotate
+- assoc
 
 # Todo
 
@@ -102,11 +104,8 @@ I borrowed the tests from the Rubinius project.
 - -
 - <=>
 - []=
-- assoc
 - bsearch
 - combination
-- fill
-- frozen?
 - hash
 - pack
 - permutation
@@ -115,7 +114,6 @@ I borrowed the tests from the Rubinius project.
 - repeated_combination
 - repeated_permutation
 - rindex
-- rotate
 - transpose
 
 
@@ -152,3 +150,5 @@ I borrowed the tests from the Rubinius project.
 - to_s (same as inspect)
 - index (same as find_index)
 - initialize_copy (mutable)
+- fill (mutable)
+- frozen?
