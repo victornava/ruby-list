@@ -311,6 +311,20 @@ class List
 
     return nil
   end
+  
+  def rindex(arg=nil, &block)
+    return each unless arg || block_given?
+
+    List[*each_with_index].reverse.map do |elem, index|
+      if arg
+        return index if arg == elem
+      else
+        return index if yield(elem)
+      end
+    end
+
+    return nil
+  end
 
   def grep(arg, &block)
     result = select { |elem| arg === elem }
@@ -633,8 +647,6 @@ class List
   end
 
   private
-
-
 
   def real_index(relative_index)
     relative_index >= 0 ? relative_index : size - relative_index.abs

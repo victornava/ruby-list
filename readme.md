@@ -93,6 +93,8 @@ I borrowed the tests from the Rubinius project.
 - rotate
 - assoc
 - rassoc
+- rindex
+
 
 # Todo
 - &
@@ -102,14 +104,11 @@ I borrowed the tests from the Rubinius project.
 - -
 - bsearch
 - combination
-- hash
 - pack
 - permutation
 - product
-
 - repeated_combination
 - repeated_permutation
-- rindex
 - transpose
 - <=>
 - []=
@@ -150,4 +149,5 @@ I borrowed the tests from the Rubinius project.
 - index (same as find_index)
 - initialize_copy (mutable)
 - fill (mutable)
-- frozen?
+- frozen? (not functionality of array)
+- hash (not functionality of array)
