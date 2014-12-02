@@ -103,12 +103,12 @@ Tests are adapted from Rubinius.
 - &
 - |
 - +
+- -
 
 
 # Todo
 
 - *
-- -
 - combination
 - pack
 - permutation

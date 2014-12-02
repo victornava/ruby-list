@@ -675,6 +675,11 @@ class List
     List[*self, *other]
   end
 
+  def -(other)
+    raise TypeError unless other.is_a?(List)
+    reject { |l| other.any? { |r| l.eql?(r) } }
+  end
+
   private
 
   def real_index(relative_index)
