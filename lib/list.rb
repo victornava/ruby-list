@@ -228,9 +228,9 @@ class List
   def flat_map(&block)
     return each unless block_given?
 
-    reduce do |memo, elem|
+    reduce(List[]) do |memo, elem|
       if elem.is_a?(List)
-        List[*memo, *elem]
+        memo + elem
       else
         List[*memo, elem]
       end
@@ -266,8 +266,7 @@ class List
 
     reduce(List[]) do |memo, elem|
       return memo unless yield_or(elem, &block)
-      # TODO don't mutate. Could do memo + elem
-      memo << elem
+      memo + elem
     end
   end
 
@@ -668,7 +667,7 @@ class List
 
   def |(other)
     raise TypeError unless other.is_a?(List)
-    List[*self, *other].uniq
+    (self + other).uniq
   end
 
   def +(other)
