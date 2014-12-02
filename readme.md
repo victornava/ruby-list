@@ -9,11 +9,13 @@ Uses Array as internal representation
 
 I'm interested only in immutable methods so methods with the bang "!" are not implemented.
 
+
 # Why?
 
 - To learn betters ways work with lists
 - To explore functional concepts
 - For fun
+
 
 # Goals
 
@@ -21,8 +23,11 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - Don't delegate anything other than each
 - Use enumerator rather than array
 
+
 # Disclamer
+
 Tests are adapted from Rubinius.
+
 
 # Done
 
@@ -96,11 +101,11 @@ Tests are adapted from Rubinius.
 - rindex
 - bsearch
 - &
+- |
 
 
 # Todo
 
-- |
 - *
 - +
 - -
@@ -116,7 +121,9 @@ Tests are adapted from Rubinius.
 - ::new
 - ::try_convert
 
+
 # Delegated to array
+
 - ::[]
 - each
 - <<
@@ -124,6 +131,7 @@ Tests are adapted from Rubinius.
 
 
 # Won't implement
+
 - collect_concat (same as flat_map)
 - inject (same as reduce)
 - collect (same as map)
