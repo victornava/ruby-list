@@ -22,7 +22,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - Use enumerator rather than array
 
 # Disclamer
-I borrowed the tests from the Rubinius project.
+Tests are adapted from Rubinius.
 
 # Done
 
