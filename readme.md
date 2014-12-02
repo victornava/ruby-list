@@ -1,6 +1,6 @@
 # What
 
-This is an implementation of Ruby's Array class. In ruby and in a functional style.
+This is an implementation of Ruby's Array class. In Ruby and in a sort of functional.
 
 The goal is to implement most of the functionality from Array relying only on the #each method,
 like Enumerable does.
@@ -94,6 +94,7 @@ I borrowed the tests from the Rubinius project.
 - assoc
 - rassoc
 - rindex
+- bsearch
 
 
 # Todo
@@ -102,7 +103,6 @@ I borrowed the tests from the Rubinius project.
 - *
 - +
 - -
-- bsearch
 - combination
 - pack
 - permutation

@@ -311,7 +311,7 @@ class List
 
     return nil
   end
-  
+
   def rindex(arg=nil, &block)
     return each unless arg || block_given?
 
@@ -644,6 +644,21 @@ class List
       List[*from.each_with_index].reject { |elem, i|  index == i }.map(&:first),
       List[*to, from[index]]
     ]
+  end
+
+  def bsearch(&block)
+    return each unless block_given?
+
+    def true_or_zero?(x)
+      raise TypeError unless x.is_a?(Numeric) || x == true || x == false || x == nil
+      x == true || x == 0
+    end
+
+    each do |elem|
+      return elem if true_or_zero?(yield(elem))
+    end
+
+    nil
   end
 
   private
