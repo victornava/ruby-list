@@ -671,6 +671,10 @@ class List
     List[*self, *other].uniq
   end
 
+  def +(other)
+    List[*self, *other]
+  end
+
   private
 
   def real_index(relative_index)
