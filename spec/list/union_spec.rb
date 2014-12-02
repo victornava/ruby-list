@@ -27,4 +27,8 @@ describe "#|" do
     (ListSubclass[1, 2, 3] | ListSubclass[1, 2, 3]).should be_an_instance_of(List)
     (List[] | ListSubclass[1, 2, 3]).should be_an_instance_of(List)
   end
+
+  it "raises TypeError if other is not a List" do
+    lambda { List[] | "" }.should raise_error(TypeError)
+  end
 end

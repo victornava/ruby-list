@@ -37,7 +37,7 @@ describe "#&" do
     (List[5, 6] & ListSubclass[1, 2, 5, 6]).should == List[5, 6]
   end
 
-  it "raises TypeError if the other is not a List" do
-    lambda { List[5, 6] & "" }.should raise_error(TypeError)
+  it "raises TypeError if other is not a List" do
+    lambda { List[] & "" }.should raise_error(TypeError)
   end
 end

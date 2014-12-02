@@ -672,6 +672,7 @@ class List
   end
 
   def +(other)
+    raise TypeError unless other.is_a?(List)
     List[*self, *other]
   end
 

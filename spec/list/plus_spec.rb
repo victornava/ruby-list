@@ -44,4 +44,8 @@ describe "#+" do
     (List[1, 2] + List[3, 4].untrust).untrusted?.should be_false
     (List[1, 2].untrust + List[3, 4].untrust).untrusted?.should be_false
   end
+
+  it "raises TypeError if other is not a List" do
+    lambda { List[] + "" }.should raise_error(TypeError)
+  end
 end
