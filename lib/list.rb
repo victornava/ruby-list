@@ -40,7 +40,7 @@ class List
 
   def map(&block)
     if block_given?
-      result = List[]
+      result = self.class[]
       each do |e|
         # TODO try to do it without modifiying the list
         result << yield(e)
@@ -678,6 +678,17 @@ class List
   def -(other)
     raise TypeError unless other.is_a?(List)
     reject { |l| other.any? { |r| l.eql?(r) } }
+  end
+
+  def *(arg)
+    if arg.is_a?(Numeric)
+      raise ArgumentError if arg < 0
+      self.class[*arg.to_i.times].map { self.dup }.flatten
+    elsif arg.is_a?(String)
+      join(arg)
+    else
+      raise TypeError
+    end
   end
 
   private
