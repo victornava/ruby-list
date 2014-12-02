@@ -95,10 +95,11 @@ Tests are adapted from Rubinius.
 - rassoc
 - rindex
 - bsearch
+- &
 
 
 # Todo
-- &
+
 - |
 - *
 - +

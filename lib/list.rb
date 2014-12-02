@@ -661,6 +661,11 @@ class List
     nil
   end
 
+  def &(other)
+    raise TypeError unless other.is_a?(List)
+    select { |l| other.any? { |r| l.eql?(r) } }.uniq
+  end
+
   private
 
   def real_index(relative_index)
