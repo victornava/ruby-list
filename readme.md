@@ -91,7 +91,6 @@ Tests are adapted from Rubinius.
 - fetch
 - slice
 - []
-- to_ary
 - each_index
 - values_at
 - sample
@@ -105,14 +104,12 @@ Tests are adapted from Rubinius.
 - +
 - -
 - *
-
+- product
 
 # Todo
 
 - combination
-- pack
 - permutation
-- product
 - repeated_combination
 - repeated_permutation
 - transpose
@@ -120,6 +117,7 @@ Tests are adapted from Rubinius.
 - []=
 - ::new
 - ::try_convert
+- to_ary
 
 
 # Delegated to array
@@ -160,3 +158,4 @@ Tests are adapted from Rubinius.
 - fill (mutable)
 - frozen? (not functionality of array)
 - hash (not functionality of array)
+- pack (binary stuff)

@@ -5,6 +5,10 @@ class List
     end
   end
 
+  def List(args)
+    self.class[*args]
+  end
+
   # TODO get rid of this
   def _array
     @array
@@ -692,6 +696,44 @@ class List
       join(arg)
     else
       raise TypeError
+    end
+  end
+
+
+  # TODO Revisit this. It might be a terrible idea
+  def product(*args, &block)
+
+    # Calculate the index value for individual digit
+    # This in theory could be done in parallel
+    # TODO Need better method and variable names.
+    def value_for_digit(n, digit_index, sizes)
+      ds = sizes[digit_index]
+      ps = sizes.take(digit_index).reduce(1, &:*)
+      (n / ps) % ds
+    end
+
+    # The idea here is to 'calculate' the combination number 'n'
+    # without having to iterate through the contents of the lists.
+    # The mathematical way if you will.
+    def combination_for(n, lists)
+      List(lists.reverse.each_with_index).map do |digit, i|
+        val = value_for_digit(n, i, lists.map(&:size))
+        digit[val]
+      end.reverse
+    end
+
+    lists = List[self, *args]
+    number_of_combinations = lists.map(&:size).reduce(&:*)
+
+    combinations = (0...number_of_combinations).map do |n|
+      combination_for(n, lists)
+    end
+
+    if block_given?
+      combinations.each(&block)
+      self
+    else
+      List(combinations)
     end
   end
 
