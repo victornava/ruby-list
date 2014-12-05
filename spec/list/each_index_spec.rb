@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "#each_index" do
 
   it "passes the index of each element to the block" do
-    l = ['a', 'b', 'c', 'd']
+    l = List['a', 'b', 'c', 'd']
     acc = List[]
     l.each_index { |i| acc << i }
     acc.should == List[0, 1, 2, 3]
@@ -15,6 +15,7 @@ describe "#each_index" do
   end
 
   it "returns an Enumerator if no block given" do
-    [1,2].each_index.should be_an_instance_of(Enumerator)
+    List[1, 2].each_index.should be_an_instance_of(Enumerator)
+    List[1, 2].each_index.to_a.should == [0, 1]
   end
 end

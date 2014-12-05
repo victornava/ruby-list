@@ -581,8 +581,12 @@ class List
   end
 
   def each_index(&block)
-    (0...size).each(&block)
-    self
+    if block_given?
+      (0...size).each(&block)
+      self
+    else
+      (0...size).each
+    end
   end
 
   # TODO Think about this again.
