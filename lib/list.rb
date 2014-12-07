@@ -737,6 +737,30 @@ class List
     end
   end
 
+  # TODO this works but is TERRIBLY SLOW!
+  # See http://en.wikipedia.org/wiki/Combination
+  # See http://en.wikipedia.org/wiki/Combinatorial_number_system
+
+  def combination(n, &block)
+    bits = 2 ** size
+    combinations = List[]
+
+
+    (0...bits).each do |k|
+      binary = "%0#{size}b" % k
+      if binary.scan(/1/).count == n
+        combinations << binary.each_char.with_index.select { |d, i| d == "1" }.map { |_, i| self[i] }
+      end
+    end
+
+    if block_given?
+      combinations.map { |c| yield(c) }
+      self
+    else
+      combinations.each
+    end
+  end
+
   private
 
   def real_index(relative_index)

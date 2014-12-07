@@ -105,10 +105,11 @@ Tests are adapted from Rubinius.
 - -
 - *
 - product
+- combination
+
 
 # Todo
 
-- combination
 - permutation
 - repeated_combination
 - repeated_permutation
