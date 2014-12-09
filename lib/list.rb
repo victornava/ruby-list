@@ -767,23 +767,17 @@ class List
   end
 
   def repeated_combination(n, &block)
-    case
-    when n < 0
-      return self
+    return self if n < 0
+    return List[[]].each if n == 0
 
-    when n == 0
-      return List[[]].each
+    x = (n-1).times.map { self.dup }
+    combinations = product(*x).map(&:sort).uniq
 
+    if block_given?
+      combinations.map { |c| yield(c) }
+      self
     else
-      x = (n-1).times.map { self.dup }
-      combinations = product(*x).map(&:sort).uniq
-
-      if block_given?
-        combinations.map { |c| yield(c) }
-        self
-      else
-        combinations.each
-      end
+      combinations.each
     end
   end
 
