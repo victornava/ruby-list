@@ -263,11 +263,6 @@ class List
     array
   end
 
-  # TODO fix this
-  # def to_ary
-  #   self
-  # end
-
   def partition(&block)
     List[select(&block), reject(&block)]
   end

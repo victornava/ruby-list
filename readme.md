@@ -114,11 +114,9 @@ Tests are adapted from Rubinius.
 - permutation
 - repeated_permutation
 - transpose
-
 - []=
 - ::new
 - ::try_convert
-- to_ary
 
 
 # Delegated to array
