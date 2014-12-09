@@ -107,13 +107,14 @@ Tests are adapted from Rubinius.
 - product
 - combination
 - repeated_combination
+- <=>
 
 # Todo
 
 - permutation
 - repeated_permutation
 - transpose
-- <=>
+
 - []=
 - ::new
 - ::try_convert

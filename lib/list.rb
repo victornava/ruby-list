@@ -40,12 +40,22 @@ class List
     self
   end
 
-  # TODO implement
-  def <=>(other)
-    _array <=> other._array
-  end
-
   # Actual implementation
+
+  def <=>(other)
+    case
+    when size < other.size
+      -1
+    when size > other.size
+      1
+    else
+      each_index do |i|
+        result = self[i] <=> other[i]
+        return result unless result == 0
+      end
+      0
+    end
+  end
 
   def map(&block)
     if block_given?
