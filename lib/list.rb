@@ -15,17 +15,17 @@ class List
   end
 
   # Delegate to Array
-
+  # TODO implement
   def initialize(*args)
     @array = Array[*args]
   end
 
-  # TODO implement this
+  # TODO implement
   def []=(index, value)
     @array[index] = value
   end
 
-  # TODO implement this using enumerator
+  # TODO implement using enumerator
   def each(*args, &block)
     @array.each(*args, &block)
   end
@@ -38,6 +38,11 @@ class List
   def <<(arg)
     @array << arg
     self
+  end
+
+  # TODO implement
+  def <=>(other)
+    _array <=> other._array
   end
 
   # Actual implementation
@@ -758,6 +763,27 @@ class List
       self
     else
       combinations.each
+    end
+  end
+
+  def repeated_combination(n, &block)
+    case
+    when n < 0
+      return self
+
+    when n == 0
+      return List[[]].each
+
+    else
+      x = (n-1).times.map { self.dup }
+      combinations = product(*x).map(&:sort).uniq
+
+      if block_given?
+        combinations.map { |c| yield(c) }
+        self
+      else
+        combinations.each
+      end
     end
   end
 
