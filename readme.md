@@ -108,11 +108,11 @@ Tests are adapted from Rubinius.
 - combination
 - repeated_combination
 - <=>
+- repeated_permutation
 
 # Todo
 
 - permutation
-- repeated_permutation
 - transpose
 - []=
 - ::new

@@ -786,6 +786,23 @@ class List
     end
   end
 
+  def repeated_permutation(n, &block)
+    n = n.to_i
+    return List[].each if n < 0
+    return List[List[]].each if n == 0
+
+    permutations = (0...(size ** n)).map do |i|
+      decimal_to_base(i, size, n).map { |k| self[k] }
+    end
+
+    if block_given?
+      permutations.map { |p| yield(p) }
+      self
+    else
+      permutations.each
+    end
+  end
+
   private
 
   def real_index(relative_index)
@@ -810,6 +827,23 @@ class List
 
   def yield_or(elem, &block)
     block_given? ? yield(elem) : elem
+  end
+
+  def decimal_to_base(decimal, base, places, bag=List[])
+    quotient = decimal / base
+    reminder = decimal % base
+
+    if quotient > 0
+      decimal_to_base(quotient, base, places, bag << reminder)
+    else
+      result = (bag << reminder).reverse
+      if result.size < places
+        padding = List[*(places - result.size).times].map { 0 }
+        padding + result
+      else
+        result
+      end
+    end
   end
 
   alias_method :[], :slice
