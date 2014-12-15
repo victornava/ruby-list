@@ -109,10 +109,10 @@ Tests are adapted from Rubinius.
 - repeated_combination
 - <=>
 - repeated_permutation
+- permutation
 
 # Todo
 
-- permutation
 - transpose
 - []=
 - ::new
@@ -125,6 +125,7 @@ Tests are adapted from Rubinius.
 - each
 - <<
 - ==
+
 
 
 # Won't implement

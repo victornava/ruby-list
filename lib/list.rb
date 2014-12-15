@@ -786,6 +786,21 @@ class List
     end
   end
 
+
+  # TODO Implement using own algorith.
+  def permutation(n=size, &block)
+
+    # I'm cheating here :P
+    permutations = self._array.permutation(n).map { |elem| List[*elem] }
+
+    if block_given?
+      permutations.map { |c| yield(c) }
+      self
+    else
+      permutations.each
+    end
+  end
+
   def repeated_permutation(n, &block)
     n = n.to_i
     return List[].each if n < 0
@@ -848,3 +863,4 @@ class List
 
   alias_method :[], :slice
 end
+
