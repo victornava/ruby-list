@@ -109,13 +109,12 @@ Tests are adapted from Rubinius.
 - repeated_combination
 - <=>
 - repeated_permutation
-- permutation
+- permutation *
+- ::new
+
 
 # Todo
 
-- transpose
-- []=
-- ::new
 - ::try_convert
 
 
@@ -159,3 +158,4 @@ Tests are adapted from Rubinius.
 - frozen? (not functionality of array)
 - hash (not functionality of array)
 - pack (binary stuff)
+- []= (mutable)

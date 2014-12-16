@@ -1,7 +1,7 @@
 class List
   class << self
-    def [](*args)
-      new(*args)
+    def [](*elements)
+      new(elements)
     end
   end
 
@@ -16,8 +16,21 @@ class List
 
   # Delegate to Array
   # TODO implement
-  def initialize(*args)
-    @array = Array[*args]
+  def initialize(size_or_list=:no_argument, obj=:no_argument, &block)
+    @array =  case
+
+    when size_or_list == :no_argument  && obj == :no_argument
+      Array.new
+
+    when size_or_list.respond_to?(:each) && obj == :no_argument
+      Array[*size_or_list]
+
+    when size_or_list.respond_to?(:to_int)
+      Array.new(Integer(size_or_list), (obj == :no_argument ? nil : obj), &block)
+
+    else
+      raise TypeError
+    end
   end
 
   # TODO implement
@@ -785,7 +798,6 @@ class List
       combinations.each
     end
   end
-
 
   # TODO Implement using own algorith.
   def permutation(n=size, &block)
