@@ -22,10 +22,6 @@ class List
     end
   end
 
-  def List(args)
-    self.class[*args]
-  end
-
   # TODO get rid of this
   def _array
     @array
@@ -761,7 +757,7 @@ class List
     # without having to iterate through the contents of the lists.
     # The mathematical way if you will.
     def combination_for(n, lists)
-      List(lists.reverse.each_with_index).map do |digit, i|
+      List[*lists.reverse.each_with_index].map do |digit, i|
         val = value_for_digit(n, i, lists.map(&:size))
         digit[val]
       end.reverse
@@ -778,7 +774,7 @@ class List
       combinations.each(&block)
       self
     else
-      List(combinations)
+      List[*combinations]
     end
   end
 
@@ -887,7 +883,7 @@ class List
     else
       result = (bag << reminder).reverse
       if result.size < places
-        padding = List[*(places - result.size).times].map { 0 }
+        padding = List.new((places - result.size), 0)
         padding + result
       else
         result
