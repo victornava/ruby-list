@@ -109,18 +109,16 @@ Tests are adapted from Rubinius.
 - repeated_combination
 - <=>
 - repeated_permutation
-- permutation *
+- permutation
 - ::new
+- ::try_convert
+- ::[]
 
 
 # Todo
 
-- ::try_convert
-
 
 # Delegated to array
-
-- ::[]
 - each
 - <<
 - ==

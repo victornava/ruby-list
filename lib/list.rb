@@ -817,11 +817,12 @@ class List
     end
   end
 
-  # TODO Implement using own algorith.
-  def permutation(n=size, &block)
+  def permutation(perm_size=size, &block)
+    n = Integer(perm_size)
+    return List[].each if n > size
 
-    # I'm cheating here :P
-    permutations = self._array.permutation(n).map { |elem| List[*elem] }
+    # This is very slow.
+    permutations = repeated_permutation(n).select { |p| p.uniq.size == n }
 
     if block_given?
       permutations.map { |c| yield(c) }
