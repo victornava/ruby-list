@@ -29,7 +29,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 Tests are adapted from Rubinius.
 
 
-# Done
+# Implemented Methods
 
 (From Enumerable)
 
@@ -113,24 +113,30 @@ Tests are adapted from Rubinius.
 - ::new
 - ::try_convert
 - ::[]
-
+- collect_concat
+- inject
+- collect
+- length
+- entries
+- detect
+- find_all
+- member?
+- each_entry
+- to_s
+- index
 
 # Todo
+- ==
 
 
 # Delegated to array
+
 - each
 - <<
-- ==
-
 
 
 # Won't implement
 
-- collect_concat (same as flat_map)
-- inject (same as reduce)
-- collect (same as map)
-- each (delegate to array)
 - pop (mutable)
 - push (mutable)
 - shift (mutable)
@@ -139,18 +145,10 @@ Tests are adapted from Rubinius.
 - delete_if (mutable)
 - delete (mutable)
 - delete_at (mutable)
-- length (same as size)
-- entries (same as to_a)
-- detect (same as find)
-- find_all (same as select)
-- member? (same as include)
-- each_entry (same as each)
 - clear (mutable)
 - concat (mutable)
 - insert (mutable)
 - replace (mutable)
-- to_s (same as inspect)
-- index (same as find_index)
 - initialize_copy (mutable)
 - fill (mutable)
 - frozen? (not functionality of array)

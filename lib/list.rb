@@ -740,7 +740,6 @@ class List
     end
   end
 
-
   # TODO Revisit this. It might be a terrible idea
   def product(*args, &block)
 
@@ -849,6 +848,19 @@ class List
     end
   end
 
+  alias_method :[], :slice
+  alias_method :collect_concat, :flat_map
+  alias_method :inject, :reduce
+  alias_method :collect, :map
+  alias_method :length, :size
+  alias_method :entries, :to_a
+  alias_method :detect, :find
+  alias_method :find_all, :select
+  alias_method :member?, :include?
+  alias_method :each_entry, :each
+  alias_method :to_s, :inspect
+  alias_method :index, :find_index
+
   private
 
   def real_index(relative_index)
@@ -892,6 +904,5 @@ class List
     end
   end
 
-  alias_method :[], :slice
 end
 
