@@ -23,8 +23,8 @@ describe "#sort" do
 
   it "sorts Lists that consist entirely of equal elements" do
     class SortSame
-      def <=>(other); 0; end
       def ==(other); true; end
+      def < (other); true; end
     end
 
     l = List[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
