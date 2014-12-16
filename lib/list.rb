@@ -3,6 +3,23 @@ class List
     def [](*elements)
       new(elements)
     end
+
+    def try_convert(obj)
+      return nil unless obj.respond_to?(:to_ary)
+
+      if obj.kind_of?(List)
+        obj
+      else
+        array = obj.to_ary
+        if array.nil?
+          nil
+        elsif array.is_a?(Array)
+          List.new(array)
+        else
+          raise TypeError
+        end
+      end
+    end
   end
 
   def List(args)
@@ -14,7 +31,6 @@ class List
     @array
   end
 
-  # Delegate to Array
   # TODO implement
   def initialize(size_or_list=:no_argument, obj=:no_argument, &block)
     @array =  case
@@ -31,6 +47,12 @@ class List
     else
       raise TypeError
     end
+  end
+
+  # Delegate to Array
+
+  def to_ary
+    _array.to_ary
   end
 
   # TODO implement
