@@ -27,7 +27,6 @@ class List
     @array
   end
 
-  # TODO implement
   def initialize(size_or_list=:no_argument, obj=:no_argument, &block)
     @array =  case
 
@@ -61,17 +60,27 @@ class List
     @array.each(*args, &block)
   end
 
-  def ==(other)
-    return false unless self.class == other.class
-    @array == other._array
-  end
-
   def <<(arg)
     @array << arg
     self
   end
 
   # Actual implementation
+
+  def ==(other)
+    other_as_list = List.try_convert(other)
+    return false unless other_as_list
+    return false unless self.size == other_as_list.size
+
+    each_index.each do |i|
+      if self.hash == self[i].hash && other.hash == other[i].hash
+        # Skip this step. Both elements are recursive
+      else
+        return false unless self[i] == other_as_list[i]
+      end
+    end
+    return true
+  end
 
   def <=>(other)
     case
