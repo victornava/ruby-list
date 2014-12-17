@@ -125,13 +125,11 @@ Tests are adapted from Rubinius.
 - index
 - ==
 
-# TODO
-- Remove <<
-
 # Delegated to Array
 
 - each
 - to_ary
+- <<
 
 
 # Won't implement
