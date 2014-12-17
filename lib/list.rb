@@ -22,15 +22,10 @@ class List
     end
   end
 
-  # TODO get rid of this
-  def _array
-    @array
-  end
-
   # Delegate to Array
 
   def to_ary
-    _array.to_ary
+    @array.dup
   end
 
   def each(*args, &block)
@@ -291,7 +286,7 @@ class List
   end
 
   def to_a
-    array = _array.dup
+    array = Array.new(self)
     array.taint if tainted?
     array.untrust if untrusted?
     array
