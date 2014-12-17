@@ -71,10 +71,7 @@ describe "#sort" do
   end
 
   it "does not call #<=> on contained objects when invoked with a block" do
-    l = List[*(0..25)]
-    (0..25).each {|i| l[i] = UFOSceptic.new }
-
-    l.sort { -1 }.should be_an_instance_of(List)
+    List.new(25, UFOSceptic.new ).sort { -1 }.should be_an_instance_of(List)
   end
 
   it "completes when supplied a block that always returns the same result" do

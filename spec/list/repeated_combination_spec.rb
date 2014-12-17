@@ -49,13 +49,4 @@ describe "#repeated_combination" do
        List[0, 2, 2, 2], List[1, 1, 1, 1], List[1, 1, 1, 2],
        List[1, 1, 2, 2], List[1, 2, 2, 2], List[2, 2, 2, 2]]
   end
-
-  it "generates from a defensive copy, ignoring mutations" do
-    acc = []
-    @list.repeated_combination(2) do |x|
-      acc << x
-      @list[0] = 1
-    end
-    acc.sort.should == [List[0, 0], List[0, 1], List[0, 2], List[1, 1], List[1, 2], List[2, 2]]
-  end
 end

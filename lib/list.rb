@@ -27,6 +27,23 @@ class List
     @array
   end
 
+  # Delegate to Array
+
+  def to_ary
+    _array.to_ary
+  end
+
+  def each(*args, &block)
+    @array.each(*args, &block)
+  end
+
+  def <<(arg)
+    @array << arg
+    self
+  end
+
+  # Actual implementation
+
   def initialize(size_or_list=:no_argument, obj=:no_argument, &block)
     @array =  case
 
@@ -43,29 +60,6 @@ class List
       raise TypeError
     end
   end
-
-  # Delegate to Array
-
-  def to_ary
-    _array.to_ary
-  end
-
-  # TODO implement
-  def []=(index, value)
-    @array[index] = value
-  end
-
-  # TODO implement using enumerator
-  def each(*args, &block)
-    @array.each(*args, &block)
-  end
-
-  def <<(arg)
-    @array << arg
-    self
-  end
-
-  # Actual implementation
 
   def ==(other)
     other_as_list = List.try_convert(other)

@@ -20,8 +20,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 # Goals
 
 - Implement all non-mutable methods
-- Don't delegate anything other than each
-- Use enumerator rather than array
+- Don't delegate anything to array other than each
 
 
 # Disclamer
@@ -124,15 +123,15 @@ Tests are adapted from Rubinius.
 - each_entry
 - to_s
 - index
-
-# Todo
 - ==
 
+# TODO
+- Remove <<
 
-# Delegated to array
+# Delegated to Array
 
 - each
-- <<
+- to_ary
 
 
 # Won't implement
