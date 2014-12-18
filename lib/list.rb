@@ -90,8 +90,7 @@ class List
     if block_given?
       result = self.class[]
       each do |e|
-        # TODO try to do it without modifiying the list
-        result << yield(e)
+        result = self.class[ *result, yield(e) ]
       end
       result
     else
@@ -104,8 +103,7 @@ class List
       memo = args.first
       rest = self
     else
-      # TODO Use list rather than array
-      memo, *rest = *@array
+      memo, *rest = self
     end
 
     rest.each do |e|
@@ -256,11 +254,11 @@ class List
   end
 
   def zip(*args, &block)
-    # TODO use each_with_index
-    result = (0..(size-1)).reduce(List[]) do |memo, i|
-      temp = List[ self[i], *args.map { |arg| arg[i] } ]
-      memo << yield_or(temp, &block)
+    result = List[*each_index].map do |i|
+      pair = List[ self[i], *args.map { |arg| arg[i] } ]
+      yield_or(pair, &block)
     end
+
     block_given? ? nil : result
   end
 
