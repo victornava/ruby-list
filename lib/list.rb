@@ -49,8 +49,11 @@ class List
       Array[*size_or_list]
 
     when size_or_list.respond_to?(:to_int)
-      Array.new(Integer(size_or_list), (obj == :no_argument ? nil : obj), &block)
-
+      if block_given?
+        Array.new(Integer(size_or_list), &block)
+      else
+        Array.new(Integer(size_or_list), obj == :no_argument ? nil : obj)
+      end
     else
       raise TypeError
     end
@@ -844,6 +847,26 @@ class List
     end
   end
 
+  def transpose
+    return List[] if empty?
+
+    arrays = map do |elem|
+      raise TypeError unless elem.respond_to?(:to_ary)
+      elem.to_ary
+    end
+
+    raise IndexError unless arrays.map(&:size).uniq.size == 1
+
+    row_size = arrays.first.size
+    col_size = arrays.size
+
+    List.new(row_size) do |row_index|
+      List.new(col_size) do |col_index|
+        arrays[col_index][row_index]
+      end
+    end
+  end
+
   alias_method :[], :slice
   alias_method :collect_concat, :flat_map
   alias_method :inject, :reduce
@@ -901,4 +924,3 @@ class List
   end
 
 end
-

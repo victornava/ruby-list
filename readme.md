@@ -28,6 +28,10 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 Tests are adapted from Rubinius.
 
 
+# Todo
+- transpose
+
+
 # Implemented Methods
 
 (From Enumerable)
