@@ -424,7 +424,7 @@ class List
   end
 
   # TODO I'm not happy with this code. It looks complicated.
-  # Not sure if it's becauce the behariour of the method is complex or
+  # Not sure if it's because the behaviour of the method is complex or
   # I haven't understood it properly.
   def slice_before(arg=nil, &block)
     raise ArgumentError unless arg || block
