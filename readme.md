@@ -129,6 +129,7 @@ Tests are adapted from Rubinius.
 - index
 - ==
 - transpose
+- dig
 
 # Delegated to Array
 

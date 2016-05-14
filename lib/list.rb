@@ -867,6 +867,20 @@ class List
     end
   end
 
+  def dig(*args)
+    raise ArgumentError unless args.any?
+    arg_list = List[*args]
+    value = at(arg_list.first)
+    tail = arg_list.drop(1)
+
+    if value && tail.any?
+      raise TypeError unless value.respond_to?(:dig)
+      value.dig(*tail)
+    else
+      value
+    end
+  end
+
   alias_method :[], :slice
   alias_method :collect_concat, :flat_map
   alias_method :inject, :reduce
