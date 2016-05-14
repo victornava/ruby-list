@@ -22,6 +22,10 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - Implement all non-mutable methods
 - Don't delegate anything to array other than each
 
+# To run the tests
+
+    $ bundle exec rspec spec/list
+
 
 # Disclamer
 
