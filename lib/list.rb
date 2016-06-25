@@ -881,6 +881,22 @@ class List
     end
   end
 
+  def slice_when(&block)
+    raise ArgumentError unless block_given?
+    result = List[List[first]]
+
+    reduce do |a, b|
+      if yield(a, b)
+        result << List[b]
+      else
+        result.last << b
+      end
+      b
+    end
+
+    result.each
+  end
+
   alias_method :[], :slice
   alias_method :collect_concat, :flat_map
   alias_method :inject, :reduce

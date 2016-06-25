@@ -14,7 +14,7 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 
 - To learn betters ways work with lists
 - To explore functional concepts
-- For fun
+- Fun
 
 
 # Goals
@@ -22,15 +22,18 @@ I'm interested only in immutable methods so methods with the bang "!" are not im
 - Implement all non-mutable methods
 - Don't delegate anything to array other than each
 
-# To run the tests
+# Running the tests
 
     $ bundle exec rspec spec/list
 
-
 # Disclamer
 
-Tests are adapted from Rubinius.
+Tests adapted from [Rubinius](https://github.com/rubinius/rubinius/tree/master/spec/ruby/core/array)
 
+# TODO
+
+- chunk_while
+- sum
 
 # Implemented Methods
 
@@ -76,7 +79,8 @@ Tests are adapted from Rubinius.
 - chunk
 - cycle
 - group_by
-- lazy
+- lazy (Not really)
+- dig
 
 (From Array)
 
@@ -130,6 +134,7 @@ Tests are adapted from Rubinius.
 - ==
 - transpose
 - dig
+- slice_when
 
 # Delegated to Array
 
