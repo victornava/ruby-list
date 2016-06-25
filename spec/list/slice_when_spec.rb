@@ -33,4 +33,12 @@ describe "#slice_when" do
       lambda { @list.slice_when }.should raise_error(ArgumentError)
     end
   end
+
+  context "when the list is empty" do
+    it "returns an empty enumerator" do
+      result = List[].slice_when { }
+      result.should be_an_instance_of(Enumerator)
+      result.size.should == 0
+    end
+  end
 end

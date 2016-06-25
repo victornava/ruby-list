@@ -883,19 +883,17 @@ class List
 
   def slice_when(&block)
     raise ArgumentError unless block_given?
-    result = List[List[first]]
-
-    reduce do |a, b|
-      if yield(a, b)
-        result << List[b]
+    return each if empty?
+    each_cons(2).reduce(List[List[first]]) do |memo, pair|
+      if yield(*pair)
+        memo << List[pair.last]
       else
-        result.last << b
+        memo.last << pair.last
       end
-      b
-    end
-
-    result.each
+      memo
+    end.each
   end
+
 
   alias_method :[], :slice
   alias_method :collect_concat, :flat_map
