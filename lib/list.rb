@@ -894,6 +894,11 @@ class List
     end.each
   end
 
+  def chunk_while(&block)
+    raise ArgumentError unless block_given?
+    slice_when { |*args| !block.(*args) }
+  end
+
 
   alias_method :[], :slice
   alias_method :collect_concat, :flat_map

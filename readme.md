@@ -32,7 +32,7 @@ Tests adapted from [Rubinius](https://github.com/rubinius/rubinius/tree/master/s
 
 # TODO
 
-- chunk_while
+
 - sum
 
 # Implemented Methods
@@ -135,6 +135,7 @@ Tests adapted from [Rubinius](https://github.com/rubinius/rubinius/tree/master/s
 - transpose
 - dig
 - slice_when
+- chunk_while
 
 # Delegated to Array
 
